@@ -1,0 +1,6 @@
+{
+    "app_name": "Trajectory Benchmarking with Indoor GPS",
+    "author": "Kabilan Tamilmani, Karthik Sundararaj",
+    "main_module": "src/main/python/main.py",
+    "version": "0.0.0"
+}

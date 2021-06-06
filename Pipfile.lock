@@ -1,11 +1,11 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "5af93950176174d67324fb764d987158e0094af73a3ea19003fe69d68599437e"
+            "sha256": "7f58aba81317b9b8274f82a2d32373b00ec5f4290985c71a30d69a20e0a68da3"
         },
         "pipfile-spec": 6,
         "requires": {
-            "python_version": "3.8"
+            "python_version": "3.6"
         },
         "sources": [
             {
@@ -16,12 +16,32 @@
         ]
     },
     "default": {
+        "altgraph": {
+            "hashes": [
+                "sha256:1f05a47122542f97028caf78775a095fbe6a2699b5089de8477eb583167d69aa",
+                "sha256:c623e5f3408ca61d4016f23a681b9adb100802ca3e3da5e718915a9e4052cebe"
+            ],
+            "version": "==0.17"
+        },
         "cycler": {
             "hashes": [
                 "sha256:1d8a5ae1ff6c5cf9b93e8811e581232ad8920aeec647c37316ceac982b08cb2d",
                 "sha256:cd7b2d1018258d7247a71425e9f26463dfb444d411c39569972f4ce586b0c9d8"
             ],
             "version": "==0.10.0"
+        },
+        "fbs": {
+            "hashes": [
+                "sha256:ffb93f64d8d605e415859ff1efb2d2eb498529ad84cc04c4a2b77467cab28e28"
+            ],
+            "index": "pypi",
+            "version": "==0.9.4"
+        },
+        "future": {
+            "hashes": [
+                "sha256:b1bead90b70cf6ec3f0710ae53a525360fa360d306a86583adc6bf83a4db537d"
+            ],
+            "version": "==0.18.2"
         },
         "kiwisolver": {
             "hashes": [
@@ -59,6 +79,13 @@
                 "sha256:fd34fbbfbc40628200730bc1febe30631347103fc8d3d4fa012c21ab9c11eca9"
             ],
             "version": "==1.3.1"
+        },
+        "macholib": {
+            "hashes": [
+                "sha256:0c436bc847e7b1d9bda0560351bf76d7caf930fb585a828d13608839ef42c432",
+                "sha256:c500f02867515e6c60a27875b408920d18332ddf96b4035ef03beddd782d4281"
+            ],
+            "version": "==1.14"
         },
         "matplotlib": {
             "hashes": [
@@ -115,6 +142,12 @@
             "index": "pypi",
             "version": "==1.20.3"
         },
+        "pefile": {
+            "hashes": [
+                "sha256:ed79b2353daa58421459abf4d685953bde0adf9f6e188944f97ba9795f100246"
+            ],
+            "version": "==2021.5.24"
+        },
         "pillow": {
             "hashes": [
                 "sha256:01425106e4e8cee195a411f729cff2a7d61813b0b11737c12bd5991f5f14bcd5",
@@ -153,6 +186,12 @@
                 "sha256:f217c3954ce5fd88303fc0c317af55d5e0204106d86dea17eb8205700d47dec2"
             ],
             "version": "==8.2.0"
+        },
+        "pyinstaller": {
+            "hashes": [
+                "sha256:a5a6e04a66abfcf8761e89a2ebad937919c6be33a7b8963e1a961b55cb35986b"
+            ],
+            "version": "==3.4"
         },
         "pyparsing": {
             "hashes": [

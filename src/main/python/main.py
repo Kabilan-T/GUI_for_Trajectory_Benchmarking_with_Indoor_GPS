@@ -24,7 +24,7 @@ def get_next_datapoint():
             hedge.dataEvent.clear()
             if (hedge.positionUpdated):
                 _,x,y,z,_,TimeStamp = hedge.position()  # BeaconID, X, Y, Z, Angle, Timestamp
-                # hedge.print_position()
+                hedge.print_position()
                 return float(x),float(y)
         except KeyboardInterrupt:
             hedge.stop()  

@@ -1,6 +1,3 @@
-[submodule "src/marvelmind.py"]
-	path = src/marvelmind.py
-	url = https://github.com/MarvelmindRobotics/marvelmind.py.git
 [submodule "MarvelmindRoboticsPython"]
-	path = src/MarvelmindRobotics
+	path = src/main/python/MarvelmindRobotics
 	url = https://github.com/MarvelmindRobotics/marvelmind.py.git

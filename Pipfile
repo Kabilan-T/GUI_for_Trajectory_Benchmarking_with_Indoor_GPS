@@ -6,7 +6,7 @@ name = "pypi"
 [packages]
 pyqt5 = "*"
 pyserial = "*"
-matplotlib = "*"
+matplotlib = "==3.2.2"
 fbs = "*"
 numpy = "*"
 

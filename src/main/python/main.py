@@ -3,7 +3,8 @@
 
 import sys
 from time import sleep
-from PyQt5 import QtCore, QtGui, QtWidgets
+from fbs_runtime.application_context.PyQt5 import ApplicationContext
+from PyQt5.QtWidgets import QMainWindow
 # MarvelmindHedge
 from MarvelmindRobotics.src.marvelmind import MarvelmindHedge # Submodule provided by Marvelmind
 # GUI window
@@ -30,18 +31,23 @@ def get_next_datapoint():
             hedge.stop()  
             sys.exit()
 
+class AppContext(ApplicationContext):          
+    def run(self):                              
+        MainWindow = QMainWindow()
+        version = self.build_settings['version']
+        # Setup the QT components in the main window
+        MyGUI =  GUI.Ui_MainWindow()
+        MyGUI.setupUi(MainWindow)
+
+        # Interface here
+        myFig = LiveFigure(x_range=[0, 5], y_range=[0, 5], func=get_next_datapoint, interval=20)
+        MyGUI.live_visualization_window.addWidget(myFig)
+
+        # Show
+        MainWindow.show()
+        return self.app.exec_()
+
 if __name__ == "__main__":
-    import sys
-    # Mainwindow setup
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    MyGUI =  GUI.Ui_MainWindow()
-    MyGUI.setupUi(MainWindow)
-
-    # Interface here
-    myFig = LiveFigure(x_range=[0, 5], y_range=[0, 5], func=get_next_datapoint, interval=20)
-    MyGUI.live_visualization_window.addWidget(myFig)
-
-    # show
-    MainWindow.show()
-    sys.exit(app.exec_())
+    appctxt = AppContext()          # Initialize           
+    exit_code = appctxt.run()       # Run           
+    sys.exit(exit_code)

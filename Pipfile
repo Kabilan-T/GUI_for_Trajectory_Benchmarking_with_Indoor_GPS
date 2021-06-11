@@ -8,7 +8,7 @@ pyqt5 = "*"
 pyserial = "*"
 matplotlib = "==3.2.2"
 fbs = "*"
-numpy = "*"
+numpy = "==1.19.5"
 
 [dev-packages]
 

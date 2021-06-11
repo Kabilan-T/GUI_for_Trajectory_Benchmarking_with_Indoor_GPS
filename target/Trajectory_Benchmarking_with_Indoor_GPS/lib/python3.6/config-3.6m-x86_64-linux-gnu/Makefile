@@ -21,23 +21,23 @@
 
 # === Variables set by makesetup ===
 
-MODNAMES=        _thread array math _struct _random _elementtree _pickle _datetime _bisect _heapq unicodedata fcntl spwd grp select _socket _posixsubprocess _md5 _sha1 _sha256 _sha512 _sha3 _blake2 syslog binascii zlib pyexpat posix errno pwd _sre _codecs _weakref _functools _operator _collections itertools atexit _signal _stat time _locale _io zipimport faulthandler _tracemalloc _symtable xxsubtype
-MODOBJS=          Modules/_threadmodule.o  Modules/arraymodule.o  Modules/mathmodule.o Modules/_math.o  Modules/_struct.o  Modules/_randommodule.o  Modules/_elementtree.o  Modules/_pickle.o  Modules/_datetimemodule.o  Modules/_bisectmodule.o  Modules/_heapqmodule.o  Modules/unicodedata.o  Modules/fcntlmodule.o  Modules/spwdmodule.o  Modules/grpmodule.o  Modules/selectmodule.o  Modules/socketmodule.o  Modules/_posixsubprocess.o  Modules/md5module.o  Modules/sha1module.o  Modules/sha256module.o  Modules/sha512module.o  Modules/sha3module.o  Modules/blake2module.o Modules/blake2b_impl.o Modules/blake2s_impl.o  Modules/syslogmodule.o  Modules/binascii.o  Modules/zlibmodule.o  Modules/pyexpat.o  Modules/posixmodule.o  Modules/errnomodule.o  Modules/pwdmodule.o  Modules/_sre.o  Modules/_codecsmodule.o  Modules/_weakref.o  Modules/_functoolsmodule.o  Modules/_operator.o  Modules/_collectionsmodule.o  Modules/itertoolsmodule.o  Modules/atexitmodule.o  Modules/signalmodule.o  Modules/_stat.o  Modules/timemodule.o  Modules/_localemodule.o  Modules/_iomodule.o Modules/iobase.o Modules/fileio.o Modules/bytesio.o Modules/bufferedio.o Modules/textio.o Modules/stringio.o  Modules/zipimport.o  Modules/faulthandler.o  Modules/_tracemalloc.o Modules/hashtable.o  Modules/symtablemodule.o  Modules/xxsubtype.o
+MODNAMES=        _thread array cmath math _struct _random _elementtree _pickle _datetime _bisect _heapq unicodedata fcntl spwd grp select _socket _posixsubprocess _md5 _sha1 _sha256 _sha512 _sha3 _blake2 syslog binascii zlib pyexpat posix errno pwd _sre _codecs _weakref _functools _operator _collections itertools atexit _signal _stat time _locale _io zipimport faulthandler _tracemalloc _symtable xxsubtype
+MODOBJS=        $(sort   Modules/_threadmodule.o  Modules/arraymodule.o  Modules/cmathmodule.o Modules/_math.o  Modules/mathmodule.o Modules/_math.o  Modules/_struct.o  Modules/_randommodule.o  Modules/_elementtree.o  Modules/_pickle.o  Modules/_datetimemodule.o  Modules/_bisectmodule.o  Modules/_heapqmodule.o  Modules/unicodedata.o  Modules/fcntlmodule.o  Modules/spwdmodule.o  Modules/grpmodule.o  Modules/selectmodule.o  Modules/socketmodule.o  Modules/_posixsubprocess.o  Modules/md5module.o  Modules/sha1module.o  Modules/sha256module.o  Modules/sha512module.o  Modules/sha3module.o  Modules/blake2module.o Modules/blake2b_impl.o Modules/blake2s_impl.o  Modules/syslogmodule.o  Modules/binascii.o  Modules/zlibmodule.o  Modules/pyexpat.o  Modules/posixmodule.o  Modules/errnomodule.o  Modules/pwdmodule.o  Modules/_sre.o  Modules/_codecsmodule.o  Modules/_weakref.o  Modules/_functoolsmodule.o  Modules/_operator.o  Modules/_collectionsmodule.o  Modules/itertoolsmodule.o  Modules/atexitmodule.o  Modules/signalmodule.o  Modules/_stat.o  Modules/timemodule.o  Modules/_localemodule.o  Modules/_iomodule.o Modules/iobase.o Modules/fileio.o Modules/bytesio.o Modules/bufferedio.o Modules/textio.o Modules/stringio.o  Modules/zipimport.o  Modules/faulthandler.o  Modules/_tracemalloc.o Modules/hashtable.o  Modules/symtablemodule.o  Modules/xxsubtype.o)
 MODLIBS=        $(LOCALMODLIBS) $(BASEMODLIBS)
 
 # === Variables set by configure
 VERSION=	3.6
 srcdir=		..
 VPATH=		..
-abs_srcdir=	/build/python3.6-CZCBJL/python3.6-3.6.13/build-shared/..
-abs_builddir=	/build/python3.6-CZCBJL/python3.6-3.6.13/build-shared
+abs_srcdir=	/build/python3.6-1chSKv/python3.6-3.6.9/build-shared/..
+abs_builddir=	/build/python3.6-1chSKv/python3.6-3.6.9/build-shared
 
 
-CC=		x86_64-linux-gnu-gcc -pthread
-CXX=		x86_64-linux-gnu-g++ -pthread
+CC=		x86_64-linux-gnu-gcc-8 -pthread
+CXX=		x86_64-linux-gnu-g++-8 -pthread
 MAINCC=		$(CC)
 LINKCC=		$(PURIFY) $(MAINCC)
-AR=		x86_64-linux-gnu-ar
+AR=		x86_64-linux-gnu-gcc-ar
 READELF=	readelf
 SOABI=		cpython-36m-x86_64-linux-gnu
 LDVERSION=	$(VERSION)$(ABIFLAGS)
@@ -80,17 +80,13 @@ MAKESETUP=      $(srcdir)/Modules/makesetup
 OPT=		-DNDEBUG -g -fwrapv -O2 -Wall
 BASECFLAGS=	 -Wno-unused-result -Wsign-compare
 BASECPPFLAGS=	-IObjects -IInclude -IPython
-CONFIGURE_CFLAGS=	-g -fdebug-prefix-map=/build/python3.6-CZCBJL/python3.6-3.6.13=. -specs=/usr/share/dpkg/no-pie-compile.specs -fstack-protector-strong -Wformat -Werror=format-security 
+CONFIGURE_CFLAGS=	-g   -fstack-protector-strong -Wformat -Werror=format-security 
 # CFLAGS_NODIST is used for building the interpreter and stdlib C extensions.
 # Use it when a compiler flag should _not_ be part of the distutils CFLAGS
 # once Python is installed (Issue #21121).
 CONFIGURE_CFLAGS_NODIST= -std=c99 -Wextra -Wno-unused-result -Wno-unused-parameter -Wno-missing-field-initializers -Wno-cast-function-type
-# LDFLAGS_NODIST is used in the same manner as CFLAGS_NODIST.
-# Use it when a linker flag should _not_ be part of the distutils LDFLAGS
-# once Python is installed (bpo-35257)
-CONFIGURE_LDFLAGS_NODIST=
 CONFIGURE_CPPFLAGS=	-Wdate-time -D_FORTIFY_SOURCE=2
-CONFIGURE_LDFLAGS=	-Wl,-Bsymbolic-functions -specs=/usr/share/dpkg/no-pie-link.specs -Wl,-z,relro
+CONFIGURE_LDFLAGS=	-Wl,-Bsymbolic-functions  -Wl,-z,relro
 # Avoid assigning CFLAGS, LDFLAGS, etc. so users can use them on the
 # command line to append to these values without stomping the pre-set
 # values.
@@ -101,7 +97,6 @@ PY_CFLAGS_NODIST=$(CONFIGURE_CFLAGS_NODIST) $(CFLAGS_NODIST)
 # environment variables
 PY_CPPFLAGS=	$(BASECPPFLAGS) -I. -I$(srcdir)/Include $(CONFIGURE_CPPFLAGS) $(CPPFLAGS)
 PY_LDFLAGS=	$(CONFIGURE_LDFLAGS) $(LDFLAGS)
-PY_LDFLAGS_NODIST=$(CONFIGURE_LDFLAGS_NODIST) $(LDFLAGS_NODIST)
 NO_AS_NEEDED=	-Wl,--no-as-needed
 LDLAST=		
 SGI_ABI=	
@@ -112,8 +107,6 @@ ARFLAGS=	rcs
 CFLAGSFORSHARED=$(CCSHARED)
 # C flags used for building the interpreter object files
 PY_CORE_CFLAGS=	$(PY_CFLAGS) $(PY_CFLAGS_NODIST) $(PY_CPPFLAGS) $(CFLAGSFORSHARED) -DPy_BUILD_CORE
-# Linker flags used for building the interpreter object files
-PY_CORE_LDFLAGS=$(PY_LDFLAGS) $(PY_LDFLAGS_NODIST)
 # Strict or non-strict aliasing flags used to compile dtoa.c, see above
 CFLAGS_ALIASING=
 
@@ -153,7 +146,7 @@ CONFINCLUDEPY=	$(CONFINCLUDEDIR)/python$(LDVERSION)
 SHLIB_SUFFIX=	.so
 EXT_SUFFIX=	.cpython-36m-x86_64-linux-gnu.so
 LDSHARED=	$(CC) -shared -Wl,-O1 -Wl,-Bsymbolic-functions $(PY_LDFLAGS)
-BLDSHARED=	$(CC) -shared -Wl,-O1 -Wl,-Bsymbolic-functions $(PY_CORE_LDFLAGS) $(PY_CFLAGS)
+BLDSHARED=	$(CC) -shared -Wl,-O1 -Wl,-Bsymbolic-functions $(PY_LDFLAGS) $(PY_CFLAGS) $(CCSHARED)
 LDCXXSHARED=	$(CXX) -shared -Wl,-O1 -Wl,-Bsymbolic-functions
 DESTSHARED=	$(BINLIBDEST)/lib-dynload
 
@@ -195,7 +188,7 @@ EXEMODE=	755
 FILEMODE=	644
 
 # configure script arguments
-CONFIG_ARGS=	 '--enable-shared' '--prefix=/usr' '--enable-ipv6' '--enable-loadable-sqlite-extensions' '--enable-optimizations' '--with-dbmliborder=bdb:gdbm' '--with-computed-gotos' '--without-ensurepip' '--with-system-expat' '--with-system-libmpdec' '--with-system-ffi' '--with-fpectl' 'CC=x86_64-linux-gnu-gcc' 'CFLAGS=-g -fdebug-prefix-map=/build/python3.6-CZCBJL/python3.6-3.6.13=. -specs=/usr/share/dpkg/no-pie-compile.specs -fstack-protector-strong -Wformat -Werror=format-security ' 'LDFLAGS=-Wl,-Bsymbolic-functions -specs=/usr/share/dpkg/no-pie-link.specs -Wl,-z,relro' 'CPPFLAGS=-Wdate-time -D_FORTIFY_SOURCE=2'
+CONFIG_ARGS=	 '--enable-shared' '--prefix=/usr' '--enable-ipv6' '--enable-loadable-sqlite-extensions' '--with-dbmliborder=bdb:gdbm' '--with-computed-gotos' '--without-ensurepip' '--with-system-expat' '--with-system-libmpdec' '--with-system-ffi' 'CC=x86_64-linux-gnu-gcc-8' 'CFLAGS=-g   -fstack-protector-strong -Wformat -Werror=format-security ' 'LDFLAGS=-Wl,-Bsymbolic-functions  -Wl,-z,relro' 'CPPFLAGS=-Wdate-time -D_FORTIFY_SOURCE=2'
 
 
 # Subdirectories with code
@@ -236,8 +229,8 @@ LIBOBJS=
 PYTHON=		python$(EXE)
 BUILDPYTHON=	python$(BUILDEXE)
 
-PYTHON_FOR_REGEN=python3
-UPDATE_FILE=python3 $(srcdir)/Tools/scripts/update_file.py
+PYTHON_FOR_REGEN=python3.6
+UPDATE_FILE=python3.6 $(srcdir)/Tools/scripts/update_file.py
 PYTHON_FOR_BUILD=./$(BUILDPYTHON) -E
 _PYTHON_HOST_PLATFORM=
 BUILD_GNU_TYPE=	x86_64-pc-linux-gnu
@@ -260,7 +253,7 @@ COVERAGE_REPORT_OPTIONS=--no-branch-coverage --title "CPython lcov report"
 
 # === Definitions added by makesetup ===
 
-LOCALMODLIBS=       -lexpat                     -L$(exec_prefix)/lib -lz  -lexpat                     
+LOCALMODLIBS=        -lexpat                     -L$(exec_prefix)/lib -lz  -lexpat                     
 BASEMODLIBS=
 PYTHONPATH=$(COREPYTHONPATH)
 COREPYTHONPATH=$(DESTPATH)$(SITEPATH)$(TESTPATH)$(MACHDEPPATH)$(EXTRAMACHDEPPATH)
@@ -459,7 +452,7 @@ DTRACE_DEPS = \
 # Rules
 
 # Default target
-all:		profile-opt
+all:		build_all
 build_all:	check-clean-src $(BUILDPYTHON) oldsharedmods sharedmods gdbhooks \
 		Programs/_testembed python-config
 
@@ -493,24 +486,34 @@ profile-opt:
 	$(MAKE) profile-removal
 
 build_all_generate_profile:
-	$(MAKE) build_all CFLAGS_NODIST="$(CFLAGS_NODIST) $(PGO_PROF_GEN_FLAG)" LDFLAGS_NODIST="$(LDFLAGS_NODIST) $(PGO_PROF_GEN_FLAG)" LIBS="$(LIBS)"
+	$(MAKE) all CFLAGS_NODIST="$(CFLAGS) $(PGO_PROF_GEN_FLAG)" LDFLAGS="$(LDFLAGS) $(PGO_PROF_GEN_FLAG)" LIBS="$(LIBS)"
 
 run_profile_task:
 	: # FIXME: can't run for a cross build
 	$(LLVM_PROF_FILE) $(RUNSHARED) ./$(BUILDPYTHON) $(PROFILE_TASK) || true
+	task="$(PROFILE_TASK)"; \
+	case "$$task" in \
+	*-s\ *) \
+	  $(LLVM_PROF_FILE) $(RUNSHARED) ./$(BUILDPYTHON) $$task; \
+	  while [ -f $(abs_builddir)/build/pynexttest ]; do \
+	    $(LLVM_PROF_FILE) $(RUNSHARED) ./$(BUILDPYTHON) $$task; \
+	  done;; \
+	*) \
+	  $(LLVM_PROF_FILE) $(RUNSHARED) ./$(BUILDPYTHON) $$task; \
+	esac
 
 build_all_merge_profile:
 	$(LLVM_PROF_MERGER)
 
 build_all_use_profile:
-	$(MAKE) build_all CFLAGS_NODIST="$(CFLAGS_NODIST) $(PGO_PROF_USE_FLAG)" LDFLAGS_NODIST="$(LDFLAGS_NODIST)"
+	$(MAKE) all CFLAGS_NODIST="$(CFLAGS) $(PGO_PROF_USE_FLAG)" LDFLAGS="$(LDFLAGS)"
 
 # Compile and run with gcov
 .PHONY=coverage coverage-lcov coverage-report
 coverage:
 	@echo "Building with support for coverage checking:"
 	$(MAKE) clean profile-removal
-	$(MAKE) build_all CFLAGS="$(CFLAGS) -O0 -pg -fprofile-arcs -ftest-coverage" LIBS="$(LIBS) -lgcov"
+	$(MAKE) all CFLAGS="$(CFLAGS) -O0 -pg -fprofile-arcs -ftest-coverage" LIBS="$(LIBS) -lgcov"
 
 coverage-lcov:
 	@echo "Creating Coverage HTML report with LCOV:"
@@ -564,7 +567,7 @@ clinic: check-clean-src $(srcdir)/Modules/_blake2/blake2s_impl.c
 
 # Build the interpreter
 $(BUILDPYTHON):	Programs/python.o $(LIBRARY) $(LDLIBRARY) $(PY3LIBRARY)
-	$(LINKCC) $(PY_CORE_LDFLAGS) $(PY_CFLAGS) $(LINKFORSHARED) -o $@ Programs/python.o $(BLDLIBRARY) $(LIBS) $(MODLIBS) $(SYSLIBS) $(LDLAST)
+	$(LINKCC) $(PY_LDFLAGS) $(PY_CFLAGS) $(LINKFORSHARED) -o $@ Programs/python.o $(BLDLIBRARY) $(LIBS) $(MODLIBS) $(SYSLIBS) $(LDLAST)
 
 platform: $(BUILDPYTHON) pybuilddir.txt
 	$(RUNSHARED) $(PYTHON_FOR_BUILD) -c 'import sys ; from sysconfig import get_platform ; print("%s-%d.%d" % (get_platform(), *sys.version_info[:2]))' >platform
@@ -586,8 +589,9 @@ pybuilddir.txt: $(BUILDPYTHON)
 	fi
 
 # This is shared by the math and cmath modules
+# don't build with -fPIC when building math and cmath as builtins
 Modules/_math.o: Modules/_math.c Modules/_math.h
-	$(CC) -c $(CCSHARED) $(PY_CORE_CFLAGS) -o $@ $<
+	$(CC) -c $(if $(findstring _math.o, $(MODOBJS)),,$(CCSHARED)) $(PY_CORE_CFLAGS) -o $@ $<
 
 # blake2s is auto-generated from blake2b
 $(srcdir)/Modules/_blake2/blake2s_impl.c: $(srcdir)/Modules/_blake2/blake2b_impl.c $(srcdir)/Modules/_blake2/blake2b2s.py
@@ -629,7 +633,7 @@ libpython3.so:	libpython$(LDVERSION).so
 	$(BLDSHARED) $(NO_AS_NEEDED) -o $@ -Wl,-h$@ $^
 
 libpython$(LDVERSION).dylib: $(LIBRARY_OBJS)
-	 $(CC) -dynamiclib -Wl,-single_module $(PY_CORE_LDFLAGS) -undefined dynamic_lookup -Wl,-install_name,$(prefix)/lib/libpython$(LDVERSION).dylib -Wl,-compatibility_version,$(VERSION) -Wl,-current_version,$(VERSION) -o $@ $(LIBRARY_OBJS) $(SHLIBS) $(LIBC) $(LIBM) $(LDLAST); \
+	 $(CC) -dynamiclib -Wl,-single_module $(PY_LDFLAGS) -undefined dynamic_lookup -Wl,-install_name,$(prefix)/lib/libpython$(LDVERSION).dylib -Wl,-compatibility_version,$(VERSION) -Wl,-current_version,$(VERSION) -o $@ $(LIBRARY_OBJS) $(SHLIBS) $(LIBC) $(LIBM) $(LDLAST); \
 
 
 libpython$(VERSION).sl: $(LIBRARY_OBJS)
@@ -654,7 +658,7 @@ $(PYTHONFRAMEWORKDIR)/Versions/$(VERSION)/$(PYTHONFRAMEWORK): \
 		$(LIBRARY) \
 		$(RESSRCDIR)/Info.plist
 	$(INSTALL) -d -m $(DIRMODE) $(PYTHONFRAMEWORKDIR)/Versions/$(VERSION)
-	$(CC) -o $(LDLIBRARY) $(PY_CORE_LDFLAGS) -dynamiclib \
+	$(CC) -o $(LDLIBRARY) $(PY_LDFLAGS) -dynamiclib \
 		-all_load $(LIBRARY) -Wl,-single_module \
 		-install_name $(DESTDIR)$(PYTHONFRAMEWORKINSTALLDIR)/Versions/$(VERSION)/$(PYTHONFRAMEWORK) \
 		-compatibility_version $(VERSION) \
@@ -707,7 +711,7 @@ Modules/Setup: $(srcdir)/Modules/Setup.dist
 	fi
 
 Programs/_testembed: Programs/_testembed.o $(LIBRARY) $(LDLIBRARY) $(PY3LIBRARY)
-	$(LINKCC) $(PY_CORE_LDFLAGS) $(LINKFORSHARED) -o $@ Programs/_testembed.o $(BLDLIBRARY) $(LIBS) $(MODLIBS) $(SYSLIBS) $(LDLAST)
+	$(LINKCC) $(PY_LDFLAGS) $(LINKFORSHARED) -o $@ Programs/_testembed.o $(BLDLIBRARY) $(LIBS) $(MODLIBS) $(SYSLIBS) $(LDLAST)
 
 ############################################################################
 # Importlib
@@ -715,7 +719,7 @@ Programs/_testembed: Programs/_testembed.o $(LIBRARY) $(LDLIBRARY) $(PY3LIBRARY)
 Programs/_freeze_importlib.o: Programs/_freeze_importlib.c Makefile
 
 Programs/_freeze_importlib: Programs/_freeze_importlib.o $(LIBRARY_OBJS_OMIT_FROZEN)
-	$(LINKCC) $(PY_CORE_LDFLAGS) -o $@ Programs/_freeze_importlib.o $(LIBRARY_OBJS_OMIT_FROZEN) $(LIBS) $(MODLIBS) $(SYSLIBS) $(LDLAST)
+	$(LINKCC) $(PY_LDFLAGS) -o $@ Programs/_freeze_importlib.o $(LIBRARY_OBJS_OMIT_FROZEN) $(LIBS) $(MODLIBS) $(SYSLIBS) $(LDLAST)
 
 .PHONY: regen-importlib
 regen-importlib: Programs/_freeze_importlib
@@ -800,7 +804,7 @@ Python/sysmodule.o: $(srcdir)/Python/sysmodule.c Makefile
 $(IO_OBJS): $(IO_H)
 
 $(PGEN): $(PGENOBJS)
-		$(CC) $(OPT) $(PY_CORE_LDFLAGS) $(PGENOBJS) $(LIBS) -o $(PGEN)
+		$(CC) $(OPT) $(PY_LDFLAGS) $(PGENOBJS) $(LIBS) -o $(PGEN)
 
 .PHONY: regen-grammar
 regen-grammar: $(PGEN)
@@ -1045,7 +1049,7 @@ TESTTIMEOUT=	1200
 
 # Run a basic set of regression tests.
 # This excludes some tests that are particularly resource-intensive.
-test:		build_all platform
+test:		all platform
 		$(TESTRUNNER) $(TESTOPTS)
 
 # Run the full test suite twice - once without .pyc files, and once with.
@@ -1055,7 +1059,7 @@ test:		build_all platform
 # the bytecode read from a .pyc file had the bug, sometimes the directly
 # generated bytecode.  This is sometimes a very shy bug needing a lot of
 # sample data.
-testall:	build_all platform
+testall:	all platform
 		-find $(srcdir)/Lib -name '*.py[co]' -print | xargs rm -f
 		$(TESTPYTHON) -E $(srcdir)/Lib/compileall.py
 		-find $(srcdir)/Lib -name '*.py[co]' -print | xargs rm -f
@@ -1064,7 +1068,7 @@ testall:	build_all platform
 
 # Run the test suite for both architectures in a Universal build on OSX.
 # Must be run on an Intel box.
-testuniversal:	build_all platform
+testuniversal:	all platform
 		if [ `arch` != 'i386' ];then \
 			echo "This can only be used on OSX/i386" ;\
 			exit 1 ;\
@@ -1090,7 +1094,7 @@ QUICKTESTOPTS=	$(TESTOPTS) -x test_subprocess test_io test_lib2to3 \
 		test_multiprocessing_forkserver \
 		test_mailbox test_socket test_poll \
 		test_select test_zipfile test_concurrent_futures
-quicktest:	build_all platform
+quicktest:	all platform
 		$(TESTRUNNER) $(QUICKTESTOPTS)
 
 # SSL tests
@@ -1436,7 +1440,7 @@ LIBPL=		$(prefix)/lib/python3.6/config-$(VERSION)$(ABIFLAGS)-x86_64-linux-gnu
 # pkgconfig directory
 LIBPC=		$(LIBDIR)/$(MULTIARCH)/pkgconfig
 
-libainstall:	build_all python-config
+libainstall:	all python-config
 	@for i in $(LIBDIR) $(LIBPL) $(LIBPC); \
 	do \
 		if test ! -d $(DESTDIR)$$i; then \
@@ -1697,7 +1701,7 @@ distclean: clobber
 				     -exec rm -f {} ';'
 
 # Check for smelly exported symbols (not starting with Py/_Py)
-smelly: build_all
+smelly: all
 	nm -p $(LIBRARY) | \
 		sed -n "/ [TDB] /s/.* //p" | grep -v "^_*Py" | sort -u; \
 
@@ -1734,7 +1738,7 @@ funny:
 		-o -print
 
 # Perform some verification checks on any modified files.
-patchcheck: build_all
+patchcheck: all
 	$(RUNSHARED) ./$(BUILDPYTHON) $(srcdir)/Tools/scripts/patchcheck.py
 
 # Dependencies
@@ -1762,6 +1766,8 @@ Modules/_threadmodule.o: $(srcdir)/Modules/_threadmodule.c; $(CC) $(PY_CORE_CFLA
 Modules/_thread$(EXT_SUFFIX):  Modules/_threadmodule.o; $(BLDSHARED)  Modules/_threadmodule.o   -o Modules/_thread$(EXT_SUFFIX)
 Modules/arraymodule.o: $(srcdir)/Modules/arraymodule.c; $(CC) $(PY_CORE_CFLAGS)  -c $(srcdir)/Modules/arraymodule.c -o Modules/arraymodule.o
 Modules/array$(EXT_SUFFIX):  Modules/arraymodule.o; $(BLDSHARED)  Modules/arraymodule.o   -o Modules/array$(EXT_SUFFIX)
+Modules/cmathmodule.o: $(srcdir)/Modules/cmathmodule.c; $(CC) $(PY_CORE_CFLAGS)  -c $(srcdir)/Modules/cmathmodule.c -o Modules/cmathmodule.o
+Modules/cmath$(EXT_SUFFIX):  Modules/cmathmodule.o Modules/_math.o; $(BLDSHARED)  Modules/cmathmodule.o Modules/_math.o   -o Modules/cmath$(EXT_SUFFIX)
 Modules/mathmodule.o: $(srcdir)/Modules/mathmodule.c; $(CC) $(PY_CORE_CFLAGS)  -c $(srcdir)/Modules/mathmodule.c -o Modules/mathmodule.o
 Modules/math$(EXT_SUFFIX):  Modules/mathmodule.o Modules/_math.o; $(BLDSHARED)  Modules/mathmodule.o Modules/_math.o   -o Modules/math$(EXT_SUFFIX)
 Modules/_struct.o: $(srcdir)/Modules/_struct.c; $(CC) $(PY_CORE_CFLAGS)  -c $(srcdir)/Modules/_struct.c -o Modules/_struct.o

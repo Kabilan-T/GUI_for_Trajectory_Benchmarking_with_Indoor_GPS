@@ -19,6 +19,26 @@
 #  include <ia64-linux-gnu/python3.6m/pyconfig.h>
 # elif defined(__m68k__) && !defined(__mcoldfire__)
 #  include <m68k-linux-gnu/python3.6m/pyconfig.h>
+# elif defined(__mips_hard_float) && defined(__mips_isa_rev) && (__mips_isa_rev >=6) && defined(_MIPSEL)
+#  if _MIPS_SIM == _ABIO32
+#   include <mipsisa32r6el-linux-gnu/python3.6m/pyconfig.h>
+#  elif _MIPS_SIM == _ABIN32
+#   include <mipsisa64r6el-linux-gnuabin32/python3.6m/pyconfig.h>
+#  elif _MIPS_SIM == _ABI64
+#   include <mipsisa64r6el-linux-gnuabi64/python3.6m/pyconfig.h>
+#  else
+#   error unknown multiarch location for pyconfig.h
+#  endif
+# elif defined(__mips_hard_float) && defined(__mips_isa_rev) && (__mips_isa_rev >=6)
+#  if _MIPS_SIM == _ABIO32
+#   include <mipsisa32r6-linux-gnu/python3.6m/pyconfig.h>
+#  elif _MIPS_SIM == _ABIN32
+#   include <mipsisa64r6-linux-gnuabin32/python3.6m/pyconfig.h>
+#  elif _MIPS_SIM == _ABI64
+#   include <mipsisa64r6-linux-gnuabi64/python3.6m/pyconfig.h>
+#  else
+#   error unknown multiarch location for pyconfig.h
+#  endif
 # elif defined(__mips_hard_float) && defined(_MIPSEL)
 #  if _MIPS_SIM == _ABIO32
 #   include <mipsel-linux-gnu/python3.6m/pyconfig.h>
@@ -61,6 +81,12 @@
 #  include <sparc64-linux-gnu/python3.6m/pyconfig.h>
 # elif defined(__sparc__)
 #  include <sparc-linux-gnu/python3.6m/pyconfig.h>
+# elif defined(__riscv)
+#  if __riscv_xlen == 64
+#    include <riscv64-linux-gnu/python3.6m/pyconfig.h>
+#  else
+#    include <riscv32-linux-gnu/python3.6m/pyconfig.h>
+#  endif
 # else
 #   error unknown multiarch location for pyconfig.h
 # endif

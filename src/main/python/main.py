@@ -17,22 +17,8 @@ from scripts.live_plotter import LiveFigure
 # hedge = MarvelmindHedge(tty = "/dev/ttyACM0", adr=None, debug=False) # "/dev/ttyACM0" is serial port address
 # hedge.daemon = True # kills thread when main program terminates
 # hedge.start() # start thread
-# def get_next_datapoint():
-#     '''Returns current x and y of the mobile beacon'''
-#     while True:
-#         try:
-#             hedge.dataEvent.wait(1)
-#             hedge.dataEvent.clear()
-#             if (hedge.positionUpdated):
-#                 _,x,y,z,_,TimeStamp = hedge.position()  # BeaconID, X, Y, Z, Angle, Timestamp
-#                 hedge.print_position()
-#                 return float(x),float(y)
-#         except KeyboardInterrupt:
-#             hedge.stop()  
-#             sys.exit()
 
-
-class dummy():
+class dummyhedge():
     def __init__(self) -> None:
         self.ite = 0
 
@@ -55,9 +41,9 @@ class AppContext(ApplicationContext):
         self.MyGUI.setupUi(MainWindow)
 
         # Interface here
-        d = dummy()
-        print(d.position())
-        self.myliveFig = LiveFigure(d)
+        d = dummyhedge() ######
+        self.myliveFig = LiveFigure(d) ######
+        # self.myliveFig = LiveFigure(hedge)
         self.MyGUI.live_visualization_window.addWidget(self.myliveFig)
         self.MyGUI.live_visualization_enable.stateChanged.connect(self.myliveFig.toggle_live_visualization)
         self.MyGUI.live_buffersize_comboBox.activated[str].connect(self.myliveFig.set_buffersize)

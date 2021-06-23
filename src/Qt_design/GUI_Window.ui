@@ -61,12 +61,25 @@
         <height>33</height>
        </rect>
       </property>
+      <property name="editable">
+       <bool>true</bool>
+      </property>
       <property name="currentIndex">
        <number>2</number>
       </property>
       <item>
        <property name="text">
+        <string>5</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
         <string>10</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>20</string>
        </property>
       </item>
       <item>
@@ -77,11 +90,6 @@
       <item>
        <property name="text">
         <string>100</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>500</string>
        </property>
       </item>
       <item>
@@ -97,6 +105,11 @@
       <item>
        <property name="text">
         <string>5000</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>10000</string>
        </property>
       </item>
      </widget>

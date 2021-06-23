@@ -3,6 +3,7 @@
 
 import sys
 from time import sleep
+import numpy as np
 from fbs_runtime.application_context.PyQt5 import ApplicationContext
 from PyQt5.QtWidgets import QMainWindow
 # MarvelmindHedge
@@ -13,35 +14,53 @@ import GUI_Window as GUI # Created by PyQt5 UI code generator
 from scripts.live_plotter import LiveFigure 
 
 # Creating MarvelmindHedge thread
-hedge = MarvelmindHedge(tty = "/dev/ttyACM0", adr=None, debug=False) # "/dev/ttyACM0" is serial port address
-hedge.daemon = True # kills thread when main program terminates
-hedge.start() # start thread
+# hedge = MarvelmindHedge(tty = "/dev/ttyACM0", adr=None, debug=False) # "/dev/ttyACM0" is serial port address
+# hedge.daemon = True # kills thread when main program terminates
+# hedge.start() # start thread
+# def get_next_datapoint():
+#     '''Returns current x and y of the mobile beacon'''
+#     while True:
+#         try:
+#             hedge.dataEvent.wait(1)
+#             hedge.dataEvent.clear()
+#             if (hedge.positionUpdated):
+#                 _,x,y,z,_,TimeStamp = hedge.position()  # BeaconID, X, Y, Z, Angle, Timestamp
+#                 hedge.print_position()
+#                 return float(x),float(y)
+#         except KeyboardInterrupt:
+#             hedge.stop()  
+#             sys.exit()
 
-def get_next_datapoint():
-    '''Returns current x and y of the mobile beacon'''
-    while True:
-        try:
-            hedge.dataEvent.wait(1)
-            hedge.dataEvent.clear()
-            if (hedge.positionUpdated):
-                _,x,y,z,_,TimeStamp = hedge.position()  # BeaconID, X, Y, Z, Angle, Timestamp
-                hedge.print_position()
-                return float(x),float(y)
-        except KeyboardInterrupt:
-            hedge.stop()  
-            sys.exit()
+
+class dummy():
+    def __init__(self) -> None:
+        self.ite = 0
+
+    def position(self):
+        id = 2
+        x = np.random.randint(-15,15)+self.ite
+        y = np.random.randint(10,20)+self.ite
+        z = np.random.randint(10,20)+self.ite
+        angle = 0
+        timestamp = self.ite
+        self.ite = self.ite+0.1
+        return [id,x,y,z,angle,timestamp]
 
 class AppContext(ApplicationContext):          
     def run(self):                              
         MainWindow = QMainWindow()
         version = self.build_settings['version']
         # Setup the QT components in the main window
-        MyGUI =  GUI.Ui_MainWindow()
-        MyGUI.setupUi(MainWindow)
+        self.MyGUI =  GUI.Ui_MainWindow()
+        self.MyGUI.setupUi(MainWindow)
 
         # Interface here
-        myFig = LiveFigure(x_range=[0, 5], y_range=[0, 5], func=get_next_datapoint, interval=20)
-        MyGUI.live_visualization_window.addWidget(myFig)
+        d = dummy()
+        print(d.position())
+        self.myliveFig = LiveFigure(d)
+        self.MyGUI.live_visualization_window.addWidget(self.myliveFig)
+        self.MyGUI.live_visualization_enable.stateChanged.connect(self.myliveFig.toggle_live_visualization)
+        self.MyGUI.live_buffersize_comboBox.activated[str].connect(self.myliveFig.set_buffersize)
 
         # Show
         MainWindow.show()

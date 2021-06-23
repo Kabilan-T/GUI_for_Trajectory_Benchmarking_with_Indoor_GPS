@@ -30,7 +30,7 @@
      <enum>Qt::LeftToRight</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <property name="movable">
      <bool>true</bool>
@@ -114,6 +114,9 @@
       </property>
       <property name="text">
        <string>Show live Trajectory</string>
+      </property>
+      <property name="checked">
+       <bool>false</bool>
       </property>
      </widget>
      <widget class="QLabel" name="live_label_buffersize">
@@ -627,7 +630,7 @@
       </property>
       <layout class="QFormLayout" name="record_visualization_window"/>
      </widget>
-     <widget class="QLabel" name="record_tab_visualization_window">
+     <widget class="QLabel" name="record_label_visualization_window">
       <property name="geometry">
        <rect>
         <x>830</x>
@@ -953,16 +956,6 @@
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actiondg">
-   <property name="text">
-    <string>dg</string>
-   </property>
-  </action>
-  <action name="actionihp">
-   <property name="text">
-    <string>ihp</string>
-   </property>
-  </action>
  </widget>
  <resources/>
  <connections/>

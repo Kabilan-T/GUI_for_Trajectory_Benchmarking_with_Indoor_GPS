@@ -41,6 +41,7 @@ class Ui_MainWindow(object):
         self.live_visualization_enable = QtWidgets.QCheckBox(self.live_tab)
         self.live_visualization_enable.setGeometry(QtCore.QRect(50, 80, 231, 31))
         self.live_visualization_enable.setLayoutDirection(QtCore.Qt.RightToLeft)
+        self.live_visualization_enable.setChecked(False)
         self.live_visualization_enable.setObjectName("live_visualization_enable")
         self.live_label_buffersize = QtWidgets.QLabel(self.live_tab)
         self.live_label_buffersize.setGeometry(QtCore.QRect(60, 180, 111, 25))
@@ -183,9 +184,9 @@ class Ui_MainWindow(object):
         self.record_visualization_window = QtWidgets.QFormLayout(self.formLayoutWidget_2)
         self.record_visualization_window.setContentsMargins(0, 0, 0, 0)
         self.record_visualization_window.setObjectName("record_visualization_window")
-        self.record_tab_visualization_window = QtWidgets.QLabel(self.record_tab)
-        self.record_tab_visualization_window.setGeometry(QtCore.QRect(830, 20, 161, 25))
-        self.record_tab_visualization_window.setObjectName("record_tab_visualization_window")
+        self.record_label_visualization_window = QtWidgets.QLabel(self.record_tab)
+        self.record_label_visualization_window.setGeometry(QtCore.QRect(830, 20, 161, 25))
+        self.record_label_visualization_window.setObjectName("record_label_visualization_window")
         self.record_label_robot_select = QtWidgets.QLabel(self.record_tab)
         self.record_label_robot_select.setGeometry(QtCore.QRect(70, 110, 111, 25))
         self.record_label_robot_select.setObjectName("record_label_robot_select")
@@ -274,13 +275,9 @@ class Ui_MainWindow(object):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
-        self.actiondg = QtWidgets.QAction(MainWindow)
-        self.actiondg.setObjectName("actiondg")
-        self.actionihp = QtWidgets.QAction(MainWindow)
-        self.actionihp.setObjectName("actionihp")
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
         self.live_buffersize_comboBox.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -329,7 +326,7 @@ class Ui_MainWindow(object):
         self.record_robot_comboBox.setItemText(0, _translate("MainWindow", "Test Robot 1"))
         self.record_robot_comboBox.setItemText(1, _translate("MainWindow", "Test Robot 2"))
         self.record_robot_comboBox.setItemText(2, _translate("MainWindow", "Test Robot 3"))
-        self.record_tab_visualization_window.setText(_translate("MainWindow", "Mobile Beacon path"))
+        self.record_label_visualization_window.setText(_translate("MainWindow", "Mobile Beacon path"))
         self.record_label_robot_select.setText(_translate("MainWindow", "Select Robot"))
         self.record_run_comboBox.setCurrentText(_translate("MainWindow", "Test Run 1"))
         self.record_run_comboBox.setItemText(0, _translate("MainWindow", "Test Run 1"))
@@ -353,8 +350,6 @@ class Ui_MainWindow(object):
         self.compare_metrics.setText(_translate("MainWindow", "Metrics"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.compare_tab), _translate("MainWindow", "Compare"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.configure_tab), _translate("MainWindow", "Configure"))
-        self.actiondg.setText(_translate("MainWindow", "dg"))
-        self.actionihp.setText(_translate("MainWindow", "ihp"))
 
 
 if __name__ == "__main__":

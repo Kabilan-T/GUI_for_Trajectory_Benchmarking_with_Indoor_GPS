@@ -17,7 +17,7 @@
         ```
     * Command : 
         ```
-        pyuic5 -x src/Qt_design/GUI_Window.ui -o src/main/python/scripts/GUI_Window.py
+        pyuic5 -x src/Qt_design/GUI_Window.ui -o src/main/python/GUI_Window.py
         ```
 * Packaging PyQt5 apps with fbs
     * Starting an app (only when starting a new project)

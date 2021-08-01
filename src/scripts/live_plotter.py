@@ -12,9 +12,11 @@ class LiveFigure(FigureCanvas, anim.FuncAnimation):
     credits :  https://stackoverflow.com/questions/57891219/how-to-make-a-fast-matplotlib-live-plot-in-a-pyqt5-gui
 
     '''
-    def __init__(self, hedge) -> None:
+    def __init__(self, hedge, MyGUI) -> None:
         ''' Initialization '''
         FigureCanvas.__init__(self, mpl_fig.Figure())
+        self.hedge = hedge
+        self.MyGUI = MyGUI
         # Set buffersize
         self.set_buffersize(20)
         # Store a figure and ax
@@ -22,22 +24,35 @@ class LiveFigure(FigureCanvas, anim.FuncAnimation):
         self._ax_.set_xlabel("X - axis")
         self._ax_.set_ylabel("Y - axis")
         self._ax_.axis('equal')
+        self._ax_.grid()
         # Path
         self._line_, = self._ax_.plot(self.x, self.y, linewidth = 2, color = 'black')
         # Position
         self._point_ = self._ax_.scatter(self.x[-1], self.y[-1], marker='X', color = 'red', s= 100)
         # Initialize animation
         self.animation = anim.FuncAnimation(self.figure, self._update_canvas_, 
-                                            fargs=(self.x,self.y,hedge,), 
+                                            fargs=(self.x,self.y,), 
                                             interval=20, blit=False)
         self.paused = False
         return
     
-    def _update_canvas_(self, i, x, y,hedge) -> None:
+    def _update_canvas_(self, i, x, y) -> None:
         '''Function to update the elements of the canvas plot'''
-        position = hedge.position()
+
+
+        position = self.hedge.position()
+        hedge_id = "Hedge ID : "+str(position[0])
+        x_value = "X : "+str(position[1])
+        y_value = "Y : "+str(position[2])
+        z_value = "Z : "+str(position[3])
+        self.MyGUI.live_hedge_id.setText(hedge_id)
+        self.MyGUI.live_coordiantes_x.setText(x_value)
+        self.MyGUI.live_coordiantes_y.setText(y_value)
+        self.MyGUI.live_coordiantes_z.setText(z_value)
+
         current_x = float(position[1]) # index of x
         current_y = float(position[2]) # index of y
+
         x.append(round(current_x, 2))       # Add new datapoint
         y.append(round(current_y, 2))     
         x = x[-self.mylen:]                 # Truncate list _x_

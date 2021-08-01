@@ -114,6 +114,9 @@
       </item>
      </widget>
      <widget class="QCheckBox" name="live_visualization_enable">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>50</x>
@@ -129,7 +132,7 @@
        <string>Show live Trajectory</string>
       </property>
       <property name="checked">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QLabel" name="live_label_buffersize">

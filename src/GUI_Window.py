@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'src/Qt_design/GUI_Window.ui'
+# Form implementation generated from reading ui file 'src/GUI_Window.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -42,9 +42,10 @@ class Ui_MainWindow(object):
         self.live_buffersize_comboBox.addItem("")
         self.live_buffersize_comboBox.addItem("")
         self.live_visualization_enable = QtWidgets.QCheckBox(self.live_tab)
+        self.live_visualization_enable.setEnabled(True)
         self.live_visualization_enable.setGeometry(QtCore.QRect(50, 80, 231, 31))
         self.live_visualization_enable.setLayoutDirection(QtCore.Qt.RightToLeft)
-        self.live_visualization_enable.setChecked(False)
+        self.live_visualization_enable.setChecked(True)
         self.live_visualization_enable.setObjectName("live_visualization_enable")
         self.live_label_buffersize = QtWidgets.QLabel(self.live_tab)
         self.live_label_buffersize.setGeometry(QtCore.QRect(60, 180, 111, 25))

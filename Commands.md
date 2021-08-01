@@ -2,8 +2,8 @@
 
 * Command to view data received from modem
     ```
-    python src/main/python/MarvelmindRobotics/src/example_matplotlib.py 
-    python src/main/python/MarvelmindRobotics/src/example.py
+    python src/MarvelmindRobotics/src/example_matplotlib.py 
+    python src/MarvelmindRobotics/src/example.py
     ```
 * Command for installing Qt5 Designer
     ```
@@ -17,23 +17,5 @@
         ```
     * Command : 
         ```
-        pyuic5 -x src/Qt_design/GUI_Window.ui -o src/main/python/GUI_Window.py
+        pyuic5 -x src/GUI_Window.ui -o src/GUI_Window.py
         ```
-* Packaging PyQt5 apps with fbs
-    * Starting an app (only when starting a new project)
-        ```
-        fbs startproject
-        ```
-    * Running the app
-        ```
-        fbs run
-        ```
-    * Freezing the app
-        ```
-        fbs freeze
-        ```
-    * Creating the Installer
-        ```
-        fbs installer
-        ```
-        The resulting package will be created under the "target/folder". the package file will be named "AppName.deb".

@@ -30,7 +30,7 @@
      <enum>Qt::LeftToRight</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <property name="movable">
      <bool>true</bool>
@@ -265,7 +265,7 @@
       <property name="title">
        <string>Current Origin Coordinates</string>
       </property>
-      <widget class="QLabel" name="setorigin_orgin_coordiantes_x">
+      <widget class="QLabel" name="setorigin_origin_coordiantes_x">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -278,7 +278,7 @@
         <string>X Value</string>
        </property>
       </widget>
-      <widget class="QLabel" name="setorigin_orgin_coordiantes_y">
+      <widget class="QLabel" name="setorigin_origin_coordiantes_y">
        <property name="geometry">
         <rect>
          <x>150</x>
@@ -291,7 +291,7 @@
         <string>Y Value</string>
        </property>
       </widget>
-      <widget class="QLabel" name="setorigin_orgin_coordiantes_z">
+      <widget class="QLabel" name="setorigin_origin_coordiantes_z">
        <property name="geometry">
         <rect>
          <x>290</x>
@@ -530,6 +530,9 @@
       </property>
       <property name="text">
        <string>Show live Trajectory</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QGroupBox" name="setorigin_loadorigin_groupBox">

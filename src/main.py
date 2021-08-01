@@ -12,6 +12,7 @@ import GUI_Window as GUI # Created by PyQt5 UI code generator
 # scripts
 from scripts.live_plotter import LivePlotter
 from scripts.origin_plotter import OriginPlotter 
+from scripts.record_plotter import RecordPlotter 
 
 # Creating MarvelmindHedge thread
 hedge = MarvelmindHedge(tty = "/dev/ttyACM0", adr=None, debug=False) # "/dev/ttyACM0" is serial port address
@@ -54,6 +55,10 @@ if __name__ == "__main__":
     MyGUI.setorigin_setorigin_dialogbuttons.button(QtWidgets.QDialogButtonBox.Reset).clicked.connect(lambda: reset_origin(Origin,originFig))
 
     # Record Tab
+    recordFig = RecordPlotter(hedge,MyGUI,Origin)
+    MyGUI.record_visualization_window.addWidget(recordFig)
+    MyGUI.record_recordstart_button.clicked.connect(recordFig.recordstart)
+    MyGUI.record_recordstop_button.clicked.connect(recordFig.recordstop)
 
     # Compare
 

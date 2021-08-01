@@ -26,6 +26,10 @@ class OriginPlotter(FigureCanvas, anim.FuncAnimation):
         self._ax_.set_ylabel("Y - axis")
         self._ax_.axis('equal')
         self._ax_.grid()
+        # Initial position
+        position = self.hedge.position()
+        self.x = [float(position[1])] # index of x
+        self.y = [float(position[2])] # index of y     
         # Path
         self._line_, = self._ax_.plot(self.x, self.y, linewidth = 1, color = 'black')
         # Position
@@ -42,9 +46,6 @@ class OriginPlotter(FigureCanvas, anim.FuncAnimation):
     def set_buffersize(self, buffersize):
         '''Function to set buffersize'''
         self.mylen = int(buffersize)
-        # Store two lists _x_ and _y_
-        self.x = [0] * self.mylen
-        self.y = [0] * self.mylen
 
     def _update_canvas_(self, i, x, y) -> None:
         '''Function to update the elements of the canvas plot'''

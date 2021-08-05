@@ -30,7 +30,7 @@
      <enum>Qt::LeftToRight</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>3</number>
     </property>
     <property name="movable">
      <bool>true</bool>
@@ -787,6 +787,19 @@
        </rect>
       </property>
      </widget>
+     <widget class="QPushButton" name="record_recordclear_button">
+      <property name="geometry">
+       <rect>
+        <x>900</x>
+        <y>580</y>
+        <width>96</width>
+        <height>33</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Clear</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="compare_tab">
      <attribute name="title">
@@ -921,7 +934,7 @@
      <x>0</x>
      <y>0</y>
      <width>1366</width>
-     <height>22</height>
+     <height>30</height>
     </rect>
    </property>
   </widget>

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 from typing import *
+from datetime import datetime
 from matplotlib.backends.qt_compat import QtCore
 from matplotlib.backends.backend_qt5agg import FigureCanvas
 import matplotlib.figure as mpl_fig
@@ -31,12 +32,16 @@ class RecordPlotter(FigureCanvas, anim.FuncAnimation):
         self.x = [float(position[1])-float(self.Origin[0])] # index of x
         self.y = [float(position[2])-float(self.Origin[1])] # index of y     
         self.z = [float(position[3])-float(self.Origin[2])] # index of z
+        self.plot_x = list()
+        self.plot_y = list()
         # Path
         self._line_, = self._ax_.plot(self.x, self.y, linewidth = 2, color = 'black')
         # Position
         self._point_ = self._ax_.scatter(self.x[-1], self.y[-1], marker='X', color = 'red', s= 100)
         # Origin
         self._origin_ = self._ax_.scatter(self.Origin[0], self.Origin[1], marker='P', color = 'blue', s= 100)
+        # start Position
+        self._start_ = self._ax_.scatter(self.Origin[0], self.Origin[1], marker='P', color = 'blue', s= 100)
         # Initialize animation
         self.animation = anim.FuncAnimation(self.figure, self._update_canvas_, 
                                             fargs=(self.x,self.y,self.z,), 
@@ -59,19 +64,28 @@ class RecordPlotter(FigureCanvas, anim.FuncAnimation):
         self._origin_.remove()
         self._origin_ = self._ax_.scatter(self.Origin[0], self.Origin[1], marker='P', color = 'blue', s= 100)
 
+        x.append(round(current_x, 2))       # Add new datapoint
+        y.append(round(current_y, 2))
+        z.append(round(current_z, 2)) 
+
+        # update axis
+        margin = 2
+        self._ax_.set_xlim(min(min(x),self.Origin[0])-margin, max(max(x),self.Origin[0])+margin)
+        self._ax_.set_ylim(min(min(y),self.Origin[1])-margin, max(max(y),self.Origin[1])+margin)
+
         if self.recording:
-            x.append(round(current_x, 2))       # Add new datapoint
-            y.append(round(current_y, 2))
-            z.append(round(current_z, 2)) 
-            # update axis
-            margin = 2
-            self._ax_.set_xlim(min(min(x),self.Origin[0])-margin, max(max(x),self.Origin[0])+margin)
-            self._ax_.set_ylim(min(min(y),self.Origin[1])-margin, max(max(y),self.Origin[1])+margin)
+            self.output_file.write(str(position[-1])+'\t'+
+                                   str(current_x)+'\t'+
+                                   str(current_y)+'\t'+
+                                   str(current_z)+'\n')
+            self.plot_x.append(x[-1])
+            self.plot_y.append(y[-1])
             # update path
-            self._line_.set_xdata(x)
-            self._line_.set_ydata(y)
+            self._line_.set_xdata(self.plot_x)
+            self._line_.set_ydata(self.plot_y)
             # start Position
-            self._start_ = self._ax_.scatter(self.x[0], self.y[0], marker='o', color = 'red', s= 100)
+            self._start_.remove()
+            self._start_ = self._ax_.scatter(self.plot_x[0], self.plot_y[0], marker='o', color = 'red', s= 100)
 
         # labels
             # Recorded Coordinates
@@ -91,17 +105,29 @@ class RecordPlotter(FigureCanvas, anim.FuncAnimation):
         '''Function to update origin position the plot'''
         self.Origin = Origin
 
-    def recordstart(self):
+    def recordstart(self,filename):
         if not self.recording:
+            self.clearplot()
+            date = datetime.now().strftime("_%Y_%m_%d-%H:%M:%S")
+            self.output_file = open(filename+date+'.txt', "w+")
+            self.output_file.write('TimeStamp \t X-Value \t Y-Value \t Z-Value \n')
             print('starting to record')
             self.animation.resume()
-            # self.x,self.y,self.z = [],[],[]
             self.recording = True
 
     def recordstop(self):
         if self.recording:
+            self.output_file.close()
             self.animation.pause() # pause animation
             print('stop record')
-            print(self.x,self.y,self.z)
-            self.x,self.y,self.z = [],[],[]
             self.recording = False
+
+    def clearplot(self):
+        if not self.recording:
+            self.plot_x = []
+            self.plot_y = []
+            self._line_.remove()
+            self._start_.remove()
+            self._start_ = self._ax_.scatter(self.Origin[0], self.Origin[1], marker='P', color = 'blue', s= 100)
+            self._line_, = self._ax_.plot(self.Origin[0], self.Origin[1], linewidth = 2, color = 'black')
+            self.animation.resume()

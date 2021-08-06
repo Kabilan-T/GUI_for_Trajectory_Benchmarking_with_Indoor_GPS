@@ -19,3 +19,34 @@
         ```
         pyuic5 -x src/GUI_Window.ui -o src/GUI_Window.py
         ```
+* PyInstaller
+    ```
+    pyinstaller --onefile src/main.py
+    ```
+* Conda Environment
+    ```
+    conda list -e > requirements.txt
+    ```
+    ```
+    conda create --name GUI_Indoor_GPS --file requirements.txt
+    conda activate GUI_Indoor_GPS
+    ```
+* pipenv
+    * install pip on python3.6
+    ```
+    apt-get update
+    apt-get install python3-pip
+    pip3 --version
+    ```
+    * install pipenv
+    ```
+    python3.6 -m pip install install pipenv
+    ```
+
+    * Create environment
+    ```
+    pipenv install
+    pipenv shell
+    exit
+    ```
+        

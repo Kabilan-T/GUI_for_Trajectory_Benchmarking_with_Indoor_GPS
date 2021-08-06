@@ -112,13 +112,15 @@ class RecordPlotter(FigureCanvas, anim.FuncAnimation):
             self.output_file = open(filename+date+'.txt', "w+")
             self.output_file.write('TimeStamp \t X-Value \t Y-Value \t Z-Value \n')
             print('starting to record')
-            self.animation.resume()
+            # self.animation.resume()
+            self.animation.event_source.start() # resume animation
             self.recording = True
 
     def recordstop(self):
         if self.recording:
             self.output_file.close()
-            self.animation.pause() # pause animation
+            # self.animation.pause() # pause animation
+            self.animation.event_source.stop() # pause animation
             print('stop record')
             self.recording = False
 
@@ -130,4 +132,5 @@ class RecordPlotter(FigureCanvas, anim.FuncAnimation):
             self._start_.remove()
             self._start_ = self._ax_.scatter(self.Origin[0], self.Origin[1], marker='P', color = 'blue', s= 100)
             self._line_, = self._ax_.plot(self.Origin[0], self.Origin[1], linewidth = 2, color = 'black')
-            self.animation.resume()
+            # self.animation.resume()
+            self.animation.event_source.start() # resume animation

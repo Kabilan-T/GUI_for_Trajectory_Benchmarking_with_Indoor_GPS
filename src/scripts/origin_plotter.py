@@ -108,11 +108,13 @@ class OriginPlotter(FigureCanvas, anim.FuncAnimation):
         if state == QtCore.Qt.Checked:
             # Checked
             if self.paused:
-                self.animation.resume() # resume animation
+                # self.animation.resume() # resume animation
+                self.animation.event_source.start() # resume animation
                 self.paused = not self.paused
         else:
             # Unchecked
             if not self.paused:
-                self.animation.pause() # pause animation
+                # self.animation.pause() # pause animation
+                self.animation.event_source.stop() # pause animation
                 self.paused = not self.paused
 

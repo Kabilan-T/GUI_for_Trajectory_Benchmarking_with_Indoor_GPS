@@ -1,6 +1,7 @@
 # my ignores
-__pycache__/
-target/
+dist/
+build/
+MarvelmindRobotics/
 
 # C++ objects and libs
 *.slo

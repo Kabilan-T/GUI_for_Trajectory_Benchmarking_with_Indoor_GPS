@@ -92,7 +92,7 @@ if __name__ == "__main__":
     # Record Tab
     recordFig = RecordPlotter(hedge,MyGUI,Origin)
     MyGUI.record_visualization_window.addWidget(recordFig)
-    MyGUI.record_recordstart_button.clicked.connect(lambda:recordFig.recordstart(filename='RoboPath'))
+    MyGUI.record_recordstart_button.clicked.connect(lambda:recordFig.recordstart(filename='MyTrajectories/RoboPath'))
     MyGUI.record_recordstop_button.clicked.connect(recordFig.recordstop)
     MyGUI.record_recordclear_button.clicked.connect(recordFig.clearplot)
     

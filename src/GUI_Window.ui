@@ -30,7 +30,7 @@
      <enum>Qt::LeftToRight</enum>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>2</number>
     </property>
     <property name="movable">
      <bool>true</bool>
@@ -556,6 +556,56 @@
      <attribute name="title">
       <string>Waypoint</string>
      </attribute>
+     <widget class="QPushButton" name="waypoint_pinwaypoint_button">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>180</y>
+        <width>121</width>
+        <height>33</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Pin waypoint</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="formLayoutWidget_6">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>40</y>
+        <width>741</width>
+        <height>471</height>
+       </rect>
+      </property>
+      <layout class="QFormLayout" name="waypoint_visualization_window"/>
+     </widget>
+     <widget class="QPushButton" name="waypoint_stop_button">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>270</y>
+        <width>121</width>
+        <height>33</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>stop file</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="waypoint_compare_button">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>350</y>
+        <width>121</width>
+        <height>33</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>compare</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="record_tab">
      <attribute name="title">

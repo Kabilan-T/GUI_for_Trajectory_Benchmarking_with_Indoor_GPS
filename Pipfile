@@ -4,11 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-pyqt5 = "*"
+PyQt5 = "*"
 pyserial = "*"
 matplotlib = "*"
 numpy = "*"
 pyinstaller = "*"
+pandas = "*"
 
 [dev-packages]
 

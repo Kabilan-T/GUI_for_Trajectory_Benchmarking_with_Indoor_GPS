@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+import os
 import sys
 sys.path.append('../')
-from time import sleep
-import numpy as np
-from PyQt5 import QtCore, QtGui, QtWidgets
+import datetime
+# PyQt library
+from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QFileDialog, QMessageBox
-
-import os
 # MarvelmindHedge
 from MarvelmindRobotics.src.marvelmind import MarvelmindHedge # Submodule provided by Marvelmind
 # GUI window
@@ -15,12 +14,10 @@ import GUI_Window as GUI # Created by PyQt5 UI code generator
 # scripts
 from scripts.live_plotter import LivePlotter
 from scripts.origin_plotter import OriginPlotter 
+from scripts.waypoint_plotter import WaypointPlotter
 from scripts.record_plotter import RecordPlotter 
 
 # Creating MarvelmindHedge thread
-
-import datetime
-
 hedge = MarvelmindHedge(tty = "/dev/ttyACM0", adr=None, debug=False) # "/dev/ttyACM0" is serial port address
 hedge.daemon = True # kills thread when main program terminates
 hedge.start() # start thread
@@ -53,35 +50,31 @@ def directory_fetch(MyGUI):
         asd = QMessageBox()
         QMessageBox.question(asd, 'Message - pythonspot.com', "You typed: " + typed, QMessageBox.Ok, QMessageBox.Ok)'''
 
- 
-Origin = [0.0, 0.0, 0.0]
+def set_origin(coordinates):
+    Origin = coordinates
+    # originFig.update_origin(Origin)
 
-def set_origin(Origin,position,originFig):
-    Origin = [float(position[0]), float(position[1]), float(position[2])]
-    originFig.update_origin(Origin)
-
-def reset_origin(Origin,originFig):
+def reset_origin():
     Origin = [0.0, 0.0, 0.0]
-    originFig.update_origin(Origin)
-
+    # originFig.update_origin(Origin)
 
 if __name__ == "__main__": 
     import sys
-    # Mainwindow setup
+    ''' Mainwindow setup '''
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     MyGUI =  GUI.Ui_MainWindow()
     MyGUI.setupUi(MainWindow)
-    # Interface here
 
+    ''' Interface here '''
     # Live Tab
     liveFig = LivePlotter(hedge,MyGUI)
     MyGUI.live_visualization_window.addWidget(liveFig)
     MyGUI.live_visualization_enable.stateChanged.connect(liveFig.toggle_live_visualization)
     MyGUI.live_buffersize_comboBox.activated[str].connect(liveFig.set_buffersize)
     
-    # Set Origin
-    originFig = OriginPlotter(hedge,MyGUI, Origin)
+    # Set Origin Tab
+    originFig = OriginPlotter(hedge,MyGUI)
     MyGUI.setorigin_visualization_window.addWidget(originFig)
     MyGUI.setorigin_visualization_enable.stateChanged.connect(originFig.toggle_live_visualization)
     MyGUI.setorigin_setorigin_dialogbuttons.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(lambda: set_origin(Origin,hedge.position()[1:4],originFig))
@@ -89,38 +82,23 @@ if __name__ == "__main__":
     MyGUI.setorigin_loadorigin_open_button.clicked.connect(lambda check: directory_fetch(MyGUI))#open button
     MyGUI.setorigin_saveorigin_save_button.clicked.connect(lambda:save_function(MyGUI))#save button
     
+    # Waypoint Tab
+    waypointFig = WaypointPlotter(hedge,MyGUI)
+    MyGUI.waypoint_visualization_window.addWidget(waypointFig)
+    MyGUI.waypoint_pinwaypoint_button.clicked.connect(waypointFig.recordstart)
+    MyGUI.waypoint_stop_button.clicked.connect(waypointFig.recordstop)
+
     # Record Tab
-    recordFig = RecordPlotter(hedge,MyGUI,Origin)
+    recordFig = RecordPlotter(hedge,MyGUI)
     MyGUI.record_visualization_window.addWidget(recordFig)
-    MyGUI.record_recordstart_button.clicked.connect(lambda:recordFig.recordstart(filename='MyTrajectories/RoboPath'))
+    MyGUI.record_recordstart_button.clicked.connect(recordFig.recordstart)
     MyGUI.record_recordstop_button.clicked.connect(recordFig.recordstop)
     MyGUI.record_recordclear_button.clicked.connect(recordFig.clearplot)
     
-    # Compare
+    # Compare Tab
     
-    # Configure
+    # Configure Tab
     
-    # Show window
+    ''' Show window '''
     MainWindow.show()
-
     sys.exit(app.exec_())
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    
-
-    
-
-
-

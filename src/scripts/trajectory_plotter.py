@@ -8,9 +8,9 @@ from matplotlib.backends.backend_qt5agg import FigureCanvas
 import matplotlib.figure as mpl_fig
 import matplotlib.animation as anim
 
-class RecordPlotter(FigureCanvas, anim.FuncAnimation):
+class TrajectoryPlotter(FigureCanvas, anim.FuncAnimation):
     '''
-    This is the RecordPlotter in which the recording plot is drawn.
+    This is the TrajectorPlotter in which the trajectory recording plot is drawn.
     '''
     def __init__(self, hedge, MyGUI) -> None:
         ''' Initialization '''
@@ -40,10 +40,10 @@ class RecordPlotter(FigureCanvas, anim.FuncAnimation):
         # Position
         self._robot_ = self._ax_.scatter(self.x[-1], self.y[-1], marker='X', color = 'red', s= 100)
         # Origin
-        self._origin_ = self._ax_.scatter(self.Origin[0], self.Origin[1], marker='P', color = 'blue', s= 100)
+        self._origin_ = self._ax_.scatter(0, 0, marker='P', color = 'blue', s= 100)
         # Annotate
         self._robottxt_ = self._ax_.annotate('Robot', (self.x[-1], self.y[-1]))
-        self._origintxt_ = self._ax_.annotate('Origin', (self.Origin[0], self.Origin[1]))
+        self._origintxt_ = self._ax_.annotate('Origin', (0, 0))
         
 
         # Initialize animation
@@ -70,9 +70,6 @@ class RecordPlotter(FigureCanvas, anim.FuncAnimation):
         # update position
         self._robot_.remove()
         self._robot_ = self._ax_.scatter(current_x, current_y, marker='X', color = 'red', s= 100)
-        # update origin
-        self._origin_.remove()
-        self._origin_ = self._ax_.scatter(self.Origin[0], self.Origin[1], marker='P', color = 'blue', s= 100)
         # update axis
         margin = 2
         self._ax_.set_xlim(min(min(x),self.Origin[0])-margin, max(max(x),self.Origin[0])+margin)
@@ -80,14 +77,14 @@ class RecordPlotter(FigureCanvas, anim.FuncAnimation):
         # update annotation
         self._robottxt_.remove()
         self._robottxt_ = self._ax_.annotate('Robot', (current_x, current_y))
-        self._origintxt_.remove()
-        self._origintxt_ = self._ax_.annotate('Origin', (self.Origin[0], self.Origin[1]))
-
 
         if self.recording:
             '''Recording'''
+            # write data into file
             data = [position[-1], current_x, current_y, current_z ]
             self.writer.writerow(data)
+            
+            # update record path
             self.plot_x.append(x[-1])
             self.plot_y.append(y[-1])
             # update path
@@ -101,10 +98,10 @@ class RecordPlotter(FigureCanvas, anim.FuncAnimation):
 
         '''labels'''
         # Recorded Coordinates
-        self.MyGUI.record_timestamp.setText("Time : "+str(position[-1]))
-        self.MyGUI.record_coordiantes_x.setText("X : "+str(current_x))
-        self.MyGUI.record_coordiantes_y.setText("Y : "+str(current_y))
-        self.MyGUI.record_coordiantes_z.setText("Z : "+str(current_z))
+        self.MyGUI.trajectory_timestamp.setText("Time : "+str(position[-1]))
+        self.MyGUI.trajectory_coordiantes_x.setText("X : "+str(current_x))
+        self.MyGUI.trajectory_coordiantes_y.setText("Y : "+str(current_y))
+        self.MyGUI.trajectory_coordiantes_z.setText("Z : "+str(current_z))
 
     def recordstart(self):
         '''Function to initiate recording'''

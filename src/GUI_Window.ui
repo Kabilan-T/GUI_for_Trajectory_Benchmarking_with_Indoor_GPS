@@ -30,33 +30,20 @@
      <enum>Qt::LeftToRight</enum>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <property name="movable">
      <bool>true</bool>
     </property>
     <widget class="QWidget" name="live_tab">
      <attribute name="title">
-      <string>Live</string>
+      <string>Live Coordinates</string>
      </attribute>
-     <widget class="QLabel" name="live_label_visualization_window">
-      <property name="geometry">
-       <rect>
-        <x>720</x>
-        <y>70</y>
-        <width>161</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Mobile Beacon path</string>
-      </property>
-     </widget>
      <widget class="QComboBox" name="live_buffersize_comboBox">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>180</y>
+        <x>220</x>
+        <y>130</y>
         <width>93</width>
         <height>33</height>
        </rect>
@@ -120,8 +107,8 @@
       <property name="geometry">
        <rect>
         <x>50</x>
-        <y>80</y>
-        <width>231</width>
+        <y>50</y>
+        <width>191</width>
         <height>31</height>
        </rect>
       </property>
@@ -138,8 +125,8 @@
      <widget class="QLabel" name="live_label_buffersize">
       <property name="geometry">
        <rect>
-        <x>60</x>
-        <y>180</y>
+        <x>50</x>
+        <y>140</y>
         <width>111</width>
         <height>25</height>
        </rect>
@@ -151,9 +138,9 @@
      <widget class="QGroupBox" name="live_coordinates_groupBox">
       <property name="geometry">
        <rect>
-        <x>80</x>
-        <y>410</y>
-        <width>231</width>
+        <x>50</x>
+        <y>220</y>
+        <width>261</width>
         <height>171</height>
        </rect>
       </property>
@@ -213,13 +200,13 @@
        </property>
       </widget>
      </widget>
-     <widget class="QWidget" name="formLayoutWidget_3">
+     <widget class="QWidget" name="formLayoutWidget_7">
       <property name="geometry">
        <rect>
-        <x>430</x>
-        <y>110</y>
-        <width>741</width>
-        <height>471</height>
+        <x>440</x>
+        <y>40</y>
+        <width>801</width>
+        <height>591</height>
        </rect>
       </property>
       <layout class="QFormLayout" name="live_visualization_window"/>
@@ -232,33 +219,20 @@
      <widget class="QWidget" name="formLayoutWidget_5">
       <property name="geometry">
        <rect>
-        <x>610</x>
+        <x>440</x>
         <y>40</y>
-        <width>611</width>
-        <height>351</height>
+        <width>801</width>
+        <height>591</height>
        </rect>
       </property>
       <layout class="QFormLayout" name="setorigin_visualization_window"/>
      </widget>
-     <widget class="QLabel" name="setorigin_label_visualization_window">
-      <property name="geometry">
-       <rect>
-        <x>840</x>
-        <y>10</y>
-        <width>161</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Mobile Beacon path</string>
-      </property>
-     </widget>
      <widget class="QGroupBox" name="setorigin_origincoordinates_groupBox">
       <property name="geometry">
        <rect>
-        <x>610</x>
-        <y>410</y>
-        <width>401</width>
+        <x>40</x>
+        <y>390</y>
+        <width>381</width>
         <height>61</height>
        </rect>
       </property>
@@ -270,7 +244,7 @@
         <rect>
          <x>10</x>
          <y>30</y>
-         <width>81</width>
+         <width>101</width>
          <height>25</height>
         </rect>
        </property>
@@ -281,9 +255,9 @@
       <widget class="QLabel" name="setorigin_origin_coordiantes_y">
        <property name="geometry">
         <rect>
-         <x>150</x>
+         <x>120</x>
          <y>30</y>
-         <width>81</width>
+         <width>111</width>
          <height>25</height>
         </rect>
        </property>
@@ -294,9 +268,9 @@
       <widget class="QLabel" name="setorigin_origin_coordiantes_z">
        <property name="geometry">
         <rect>
-         <x>290</x>
+         <x>240</x>
          <y>30</y>
-         <width>81</width>
+         <width>111</width>
          <height>25</height>
         </rect>
        </property>
@@ -308,9 +282,9 @@
      <widget class="QGroupBox" name="setorigin_transformedcoordinates_groupBox">
       <property name="geometry">
        <rect>
-        <x>990</x>
-        <y>490</y>
-        <width>221</width>
+        <x>210</x>
+        <y>470</y>
+        <width>211</width>
         <height>121</height>
        </rect>
       </property>
@@ -322,7 +296,7 @@
         <rect>
          <x>10</x>
          <y>30</y>
-         <width>81</width>
+         <width>121</width>
          <height>25</height>
         </rect>
        </property>
@@ -335,7 +309,7 @@
         <rect>
          <x>10</x>
          <y>60</y>
-         <width>81</width>
+         <width>121</width>
          <height>25</height>
         </rect>
        </property>
@@ -348,7 +322,7 @@
         <rect>
          <x>10</x>
          <y>90</y>
-         <width>81</width>
+         <width>121</width>
          <height>25</height>
         </rect>
        </property>
@@ -360,9 +334,9 @@
      <widget class="QGroupBox" name="setorigin_rawcoordinates_groupBox">
       <property name="geometry">
        <rect>
-        <x>610</x>
-        <y>490</y>
-        <width>211</width>
+        <x>40</x>
+        <y>470</y>
+        <width>151</width>
         <height>121</height>
        </rect>
       </property>
@@ -374,7 +348,7 @@
         <rect>
          <x>10</x>
          <y>30</y>
-         <width>81</width>
+         <width>121</width>
          <height>25</height>
         </rect>
        </property>
@@ -387,7 +361,7 @@
         <rect>
          <x>10</x>
          <y>60</y>
-         <width>81</width>
+         <width>121</width>
          <height>25</height>
         </rect>
        </property>
@@ -400,7 +374,7 @@
         <rect>
          <x>10</x>
          <y>90</y>
-         <width>81</width>
+         <width>121</width>
          <height>25</height>
         </rect>
        </property>
@@ -412,9 +386,9 @@
      <widget class="QGroupBox" name="setorigin_setorigin_groupBox">
       <property name="geometry">
        <rect>
-        <x>70</x>
-        <y>170</y>
-        <width>491</width>
+        <x>40</x>
+        <y>70</y>
+        <width>381</width>
         <height>131</height>
        </rect>
       </property>
@@ -437,9 +411,9 @@
       <widget class="QDialogButtonBox" name="setorigin_setorigin_dialogbuttons">
        <property name="geometry">
         <rect>
-         <x>-50</x>
+         <x>30</x>
          <y>80</y>
-         <width>491</width>
+         <width>211</width>
          <height>31</height>
         </rect>
        </property>
@@ -456,7 +430,7 @@
       <widget class="QDialogButtonBox" name="setorigin_saveorigin_save_button">
        <property name="geometry">
         <rect>
-         <x>360</x>
+         <x>280</x>
          <y>80</y>
          <width>81</width>
          <height>33</height>
@@ -471,7 +445,7 @@
       <property name="geometry">
        <rect>
         <x>70</x>
-        <y>60</y>
+        <y>30</y>
         <width>231</width>
         <height>31</height>
        </rect>
@@ -489,9 +463,9 @@
      <widget class="QGroupBox" name="setorigin_loadorigin_groupBox">
       <property name="geometry">
        <rect>
-        <x>60</x>
-        <y>380</y>
-        <width>491</width>
+        <x>40</x>
+        <y>230</y>
+        <width>381</width>
         <height>131</height>
        </rect>
       </property>
@@ -514,8 +488,8 @@
       <widget class="QDialogButtonBox" name="setorigin_loadorigin_open_button">
        <property name="geometry">
         <rect>
-         <x>390</x>
-         <y>40</y>
+         <x>50</x>
+         <y>80</y>
          <width>81</width>
          <height>33</height>
         </rect>
@@ -527,8 +501,8 @@
       <widget class="QDialogButtonBox" name="setorigin_loadorigin_dialogbuttons">
        <property name="geometry">
         <rect>
-         <x>310</x>
-         <y>90</y>
+         <x>200</x>
+         <y>80</y>
          <width>166</width>
          <height>33</height>
         </rect>
@@ -538,150 +512,17 @@
        </property>
       </widget>
      </widget>
-     <widget class="QDialogButtonBox" name="setorigin_restore_button">
-      <property name="geometry">
-       <rect>
-        <x>1060</x>
-        <y>440</y>
-        <width>166</width>
-        <height>33</height>
-       </rect>
-      </property>
-      <property name="standardButtons">
-       <set>QDialogButtonBox::RestoreDefaults</set>
-      </property>
-     </widget>
     </widget>
     <widget class="QWidget" name="waypoint_tab">
      <attribute name="title">
-      <string>Waypoint</string>
+      <string>Waypoint Record</string>
      </attribute>
-     <widget class="QPushButton" name="waypoint_pinwaypoint_button">
+     <widget class="QComboBox" name="waypoint_run_comboBox">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>180</y>
-        <width>121</width>
-        <height>33</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Pin waypoint</string>
-      </property>
-     </widget>
-     <widget class="QWidget" name="formLayoutWidget_6">
-      <property name="geometry">
-       <rect>
-        <x>370</x>
-        <y>40</y>
-        <width>741</width>
-        <height>471</height>
-       </rect>
-      </property>
-      <layout class="QFormLayout" name="waypoint_visualization_window"/>
-     </widget>
-     <widget class="QPushButton" name="waypoint_stop_button">
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>270</y>
-        <width>121</width>
-        <height>33</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>stop file</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="waypoint_compare_button">
-      <property name="geometry">
-       <rect>
-        <x>200</x>
-        <y>350</y>
-        <width>121</width>
-        <height>33</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>compare</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="record_tab">
-     <attribute name="title">
-      <string>Record</string>
-     </attribute>
-     <widget class="QComboBox" name="record_robot_comboBox">
-      <property name="geometry">
-       <rect>
-        <x>290</x>
+        <x>210</x>
         <y>100</y>
-        <width>91</width>
-        <height>33</height>
-       </rect>
-      </property>
-      <property name="editable">
-       <bool>true</bool>
-      </property>
-      <item>
-       <property name="text">
-        <string>Test Robot 1</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Test Robot 2</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Test Robot 3</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QWidget" name="formLayoutWidget_2">
-      <property name="geometry">
-       <rect>
-        <x>500</x>
-        <y>50</y>
-        <width>741</width>
-        <height>471</height>
-       </rect>
-      </property>
-      <layout class="QFormLayout" name="record_visualization_window"/>
-     </widget>
-     <widget class="QLabel" name="record_label_visualization_window">
-      <property name="geometry">
-       <rect>
-        <x>830</x>
-        <y>20</y>
-        <width>161</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Mobile Beacon path</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="record_label_robot_select">
-      <property name="geometry">
-       <rect>
-        <x>70</x>
-        <y>110</y>
-        <width>111</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Select Robot</string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="record_run_comboBox">
-      <property name="geometry">
-       <rect>
-        <x>290</x>
-        <y>160</y>
-        <width>93</width>
+        <width>201</width>
         <height>33</height>
        </rect>
       </property>
@@ -707,24 +548,76 @@
        </property>
       </item>
      </widget>
-     <widget class="QLabel" name="record_label_run_select">
+     <widget class="QComboBox" name="waypoint_robot_comboBox">
       <property name="geometry">
        <rect>
-        <x>70</x>
-        <y>170</y>
-        <width>111</width>
-        <height>25</height>
+        <x>210</x>
+        <y>50</y>
+        <width>201</width>
+        <height>33</height>
+       </rect>
+      </property>
+      <property name="editable">
+       <bool>true</bool>
+      </property>
+      <item>
+       <property name="text">
+        <string>Test Robot 1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Test Robot 2</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Test Robot 3</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QPushButton" name="waypoint_recordstop_button">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>210</y>
+        <width>131</width>
+        <height>33</height>
        </rect>
       </property>
       <property name="text">
-       <string>Select Run</string>
+       <string>Stop</string>
       </property>
      </widget>
-     <widget class="QGroupBox" name="record_coordinates_groupBox">
+     <widget class="QWidget" name="formLayoutWidget_9">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>40</y>
+        <width>801</width>
+        <height>591</height>
+       </rect>
+      </property>
+      <layout class="QFormLayout" name="waypoint_visualization_window"/>
+     </widget>
+     <widget class="QPushButton" name="waypoint_recordstart_button">
       <property name="geometry">
        <rect>
         <x>70</x>
-        <y>300</y>
+        <y>210</y>
+        <width>131</width>
+        <height>33</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Record</string>
+      </property>
+     </widget>
+     <widget class="QGroupBox" name="waypoint_coordinates_groupBox">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>340</y>
         <width>231</width>
         <height>171</height>
        </rect>
@@ -732,12 +625,12 @@
       <property name="title">
        <string>GPS Coordinates</string>
       </property>
-      <widget class="QLabel" name="record_timestamp">
+      <widget class="QLabel" name="waypoint_timestamp">
        <property name="geometry">
         <rect>
          <x>10</x>
          <y>40</y>
-         <width>101</width>
+         <width>211</width>
          <height>25</height>
         </rect>
        </property>
@@ -745,12 +638,12 @@
         <string>Time Stamp</string>
        </property>
       </widget>
-      <widget class="QLabel" name="record_coordiantes_x">
+      <widget class="QLabel" name="waypoint_coordiantes_x">
        <property name="geometry">
         <rect>
          <x>10</x>
          <y>70</y>
-         <width>81</width>
+         <width>211</width>
          <height>25</height>
         </rect>
        </property>
@@ -758,12 +651,12 @@
         <string>X Value</string>
        </property>
       </widget>
-      <widget class="QLabel" name="record_coordiantes_y">
+      <widget class="QLabel" name="waypoint_coordiantes_y">
        <property name="geometry">
         <rect>
          <x>10</x>
          <y>100</y>
-         <width>81</width>
+         <width>211</width>
          <height>25</height>
         </rect>
        </property>
@@ -771,12 +664,12 @@
         <string>Y Value</string>
        </property>
       </widget>
-      <widget class="QLabel" name="record_coordiantes_z">
+      <widget class="QLabel" name="waypoint_coordiantes_z">
        <property name="geometry">
         <rect>
          <x>10</x>
          <y>130</y>
-         <width>81</width>
+         <width>211</width>
          <height>25</height>
         </rect>
        </property>
@@ -785,11 +678,192 @@
        </property>
       </widget>
      </widget>
-     <widget class="QPushButton" name="record_recordstart_button">
+     <widget class="QLabel" name="waypoint_label_robot_select">
       <property name="geometry">
        <rect>
-        <x>660</x>
-        <y>580</y>
+        <x>70</x>
+        <y>60</y>
+        <width>111</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Select Robot</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="waypoint_label_run_select">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>100</y>
+        <width>111</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Select Run</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="record_tab">
+     <attribute name="title">
+      <string>Trajectory Record</string>
+     </attribute>
+     <widget class="QComboBox" name="trajectory_robot_comboBox">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>50</y>
+        <width>201</width>
+        <height>33</height>
+       </rect>
+      </property>
+      <property name="editable">
+       <bool>true</bool>
+      </property>
+      <item>
+       <property name="text">
+        <string>Test Robot 1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Test Robot 2</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Test Robot 3</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="trajectory_label_robot_select">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>60</y>
+        <width>111</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Select Robot</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="trajectory_run_comboBox">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>100</y>
+        <width>201</width>
+        <height>33</height>
+       </rect>
+      </property>
+      <property name="editable">
+       <bool>true</bool>
+      </property>
+      <property name="currentText">
+       <string>Test Run 1</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>Test Run 1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Test Run 2</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Test Run 3</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="trajectory_label_run_select">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>100</y>
+        <width>111</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Select Run</string>
+      </property>
+     </widget>
+     <widget class="QGroupBox" name="trajectory_coordinates_groupBox">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>340</y>
+        <width>231</width>
+        <height>171</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>GPS Coordinates</string>
+      </property>
+      <widget class="QLabel" name="trajectory_timestamp">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>40</y>
+         <width>211</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Time Stamp</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="trajectory_coordiantes_x">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>70</y>
+         <width>211</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>X Value</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="trajectory_coordiantes_y">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>100</y>
+         <width>211</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Y Value</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="trajectory_coordiantes_z">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>130</y>
+         <width>211</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Z Value</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QPushButton" name="trajectory_recordstart_button">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>210</y>
         <width>96</width>
         <height>33</height>
        </rect>
@@ -798,11 +872,11 @@
        <string>Record</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="record_recordstop_button">
+     <widget class="QPushButton" name="trajectory_recordstop_button">
       <property name="geometry">
        <rect>
-        <x>780</x>
-        <y>580</y>
+        <x>190</x>
+        <y>210</y>
         <width>96</width>
         <height>33</height>
        </rect>
@@ -811,37 +885,11 @@
        <string>Stop</string>
       </property>
      </widget>
-     <widget class="QCheckBox" name="record_timer_enable">
+     <widget class="QPushButton" name="trajectory_recordclear_button">
       <property name="geometry">
        <rect>
-        <x>40</x>
-        <y>570</y>
-        <width>221</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="layoutDirection">
-       <enum>Qt::LeftToRight</enum>
-      </property>
-      <property name="text">
-       <string>Auto stop Timer (sec)</string>
-      </property>
-     </widget>
-     <widget class="QDoubleSpinBox" name="record_timer_value">
-      <property name="geometry">
-       <rect>
-        <x>260</x>
-        <y>570</y>
-        <width>74</width>
-        <height>34</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="record_recordclear_button">
-      <property name="geometry">
-       <rect>
-        <x>900</x>
-        <y>580</y>
+        <x>310</x>
+        <y>210</y>
         <width>96</width>
         <height>33</height>
        </rect>
@@ -849,6 +897,17 @@
       <property name="text">
        <string>Clear</string>
       </property>
+     </widget>
+     <widget class="QWidget" name="formLayoutWidget_8">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>40</y>
+        <width>801</width>
+        <height>591</height>
+       </rect>
+      </property>
+      <layout class="QFormLayout" name="trajectory_visualization_window"/>
      </widget>
     </widget>
     <widget class="QWidget" name="compare_tab">
@@ -970,11 +1029,6 @@
        </property>
       </widget>
      </widget>
-    </widget>
-    <widget class="QWidget" name="configure_tab">
-     <attribute name="title">
-      <string>Configure</string>
-     </attribute>
     </widget>
    </widget>
   </widget>

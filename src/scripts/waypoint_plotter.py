@@ -39,10 +39,10 @@ class WaypointPlotter(FigureCanvas, anim.FuncAnimation):
         # Position
         self._robot_ = self._ax_.scatter(self.x[-1], self.y[-1], marker='X', color = 'red', s= 100)
         # Origin
-        self._origin_ = self._ax_.scatter(self.Origin[0], self.Origin[1], marker='P', color = 'blue', s= 100)
+        self._origin_ = self._ax_.scatter(0, 0, marker='P', color = 'blue', s= 100)
         # Annotate
         self._robottxt_ = self._ax_.annotate('Robot', (self.x[-1], self.y[-1]))
-        self._origintxt_ = self._ax_.annotate('Origin', (self.Origin[0], self.Origin[1]))
+        self._origintxt_ = self._ax_.annotate('Origin', (0, 0))
         # Waypoints
         self._waypoints_  = list()
         self._waypointstxt_ = list()
@@ -75,9 +75,6 @@ class WaypointPlotter(FigureCanvas, anim.FuncAnimation):
         # update position
         self._robot_.remove()
         self._robot_ = self._ax_.scatter(current_x, current_y, marker='X', color = 'red', s= 100)
-        # update origin
-        self._origin_.remove()
-        self._origin_ = self._ax_.scatter(self.Origin[0], self.Origin[1], marker='P', color = 'blue', s= 100)
         # update axis
         margin = 2
         self._ax_.set_xlim(min(min(x),self.Origin[0])-margin, max(max(x),self.Origin[0])+margin)
@@ -85,9 +82,7 @@ class WaypointPlotter(FigureCanvas, anim.FuncAnimation):
         # update annotation
         self._robottxt_.remove()
         self._robottxt_ = self._ax_.annotate('Robot', (current_x, current_y))
-        self._origintxt_.remove()
-        self._origintxt_ = self._ax_.annotate('Origin', (self.Origin[0], self.Origin[1]))
-
+        
         if self.recording:
             '''Recording'''
             self.datapoints.append([current_x, current_y, current_z])
@@ -107,15 +102,11 @@ class WaypointPlotter(FigureCanvas, anim.FuncAnimation):
                 self.recording = False
 
         '''labels'''
-        # Coordinates
-        # timestamp = "Time : "+str(position[-1])
-        # x_value = "X : "+str(current_x)
-        # y_value = "Y : "+str(current_y)
-        # z_value = "Z : "+str(current_z)
-        # self.MyGUI.record_timestamp.setText(timestamp)
-        # self.MyGUI.record_coordiantes_x.setText(x_value)
-        # self.MyGUI.record_coordiantes_y.setText(y_value)
-        # self.MyGUI.record_coordiantes_z.setText(z_value)
+        # Recorded Coordinates
+        self.MyGUI.waypoint_timestamp.setText("Time : "+str(position[-1]))
+        self.MyGUI.waypoint_coordiantes_x.setText("X : "+str(current_x))
+        self.MyGUI.waypoint_coordiantes_y.setText("Y : "+str(current_y))
+        self.MyGUI.waypoint_coordiantes_z.setText("Z : "+str(current_z))
 
     def compute_waypoint(self,datapoints): 
         '''Function to compute a waypoint from a set of recorded datapoints'''

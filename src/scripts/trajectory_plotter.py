@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+import os
 from typing import *
 import csv
 from datetime import datetime
@@ -147,4 +148,11 @@ class TrajectoryPlotter(FigureCanvas, anim.FuncAnimation):
     
     def get_filename(self):
         '''Function to get Filename prefix'''
-        return 'MyRobotTrajectory'
+        path = os.path.join(os.getcwd(),'Trajectory')
+        if not os.path.exists(path):
+            os.makedirs(path)
+        # Robot and Run name selection
+        robot_name = str(self.MyGUI.trajectory_robot_comboBox.currentText())
+        run_name = str(self.MyGUI.trajectory_run_comboBox.currentText())
+        filename = robot_name+'_'+run_name+'_'
+        return os.path.join(path, filename)

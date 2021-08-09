@@ -2,6 +2,8 @@
 dist/
 build/
 MarvelmindRobotics/
+Trajectory/
+WayPoint/
 
 # C++ objects and libs
 *.slo

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+import os
 from typing import *
 import csv
 from datetime import datetime
@@ -160,4 +161,11 @@ class WaypointPlotter(FigureCanvas, anim.FuncAnimation):
     
     def get_filename(self):
         '''Function to get Filename prefix'''
-        return 'MyRobotWaypoint'
+        path = os.path.join(os.getcwd(),'Waypoint')
+        if not os.path.exists(path):
+            os.makedirs(path)
+        # Robot and Run name selection
+        robot_name = str(self.MyGUI.waypoint_robot_comboBox.currentText())
+        run_name = str(self.MyGUI.waypoint_run_comboBox.currentText())
+        filename = robot_name+'_'+run_name+'_'
+        return os.path.join(path, filename)

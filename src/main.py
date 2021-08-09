@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 import os
 import sys
+
+from matplotlib import animation
 sys.path.append('../')
 import datetime
 # PyQt library
@@ -72,9 +74,11 @@ class MyGUI_Application():
         self.MyGUI.setorigin_visualization_enable.stateChanged.connect(self.originplot.toggle_live_visualization)
         self.MyGUI.setorigin_setorigin_dialogbuttons.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(self.set_origin)
         self.MyGUI.setorigin_setorigin_dialogbuttons.button(QtWidgets.QDialogButtonBox.Reset).clicked.connect(self.reset_origin)
-        # self.MyGUI.setorigin_loadorigin_open_button.clicked.connect(lambda check: directory_fetch(self.MyGUI))#open button
-        # self.MyGUI.setorigin_saveorigin_save_button.clicked.connect(lambda:save_function(self.MyGUI))#save button
-
+        self.MyGUI.setorigin_saveorigin_save_button.button(QtWidgets.QDialogButtonBox.Save).clicked.connect(self.save_origin)
+        self.MyGUI.setorigin_loadorigin_open_button.button(QtWidgets.QDialogButtonBox.Open).clicked.connect(self.load_origin)
+        self.MyGUI.setorigin_loadorigin_dialogbuttons.button(QtWidgets.QDialogButtonBox.Apply).clicked.connect(self.apply_origin)
+        self.MyGUI.setorigin_loadorigin_dialogbuttons.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(self.reset_origin)
+        
     def waypoint_tab(self):
         '''Waypoint record Tab Interfaces'''
         self.MyGUI.waypoint_visualization_window.addWidget(self.waypointplot)
@@ -88,9 +92,10 @@ class MyGUI_Application():
         self.MyGUI.trajectory_recordstop_button.clicked.connect(self.trajectoryplot.recordstop)
         self.MyGUI.trajectory_recordclear_button.clicked.connect(self.trajectoryplot.clearplot)
 
-    def set_origin(self):
-        '''Makes the current coordinates of the Robot as Origin'''
-        origin = self.hedge.position()[1:4] # Current x,y,z
+    def set_origin(self, origin = []):
+        '''Makes the current or given coordinates as Origin'''
+        if not origin:
+            origin = self.hedge.position()[1:4] # Current x,y,z
         self.originplot.set_origin(origin)
         self.waypointplot.set_origin(origin)
         self.trajectoryplot.set_origin(origin)
@@ -100,36 +105,57 @@ class MyGUI_Application():
         self.originplot.reset_origin()
         self.waypointplot.reset_origin()
         self.trajectoryplot.reset_origin()
+    
+    def save_origin(self):
+        '''Save origin to a file'''
+        filename = self.get_SavefileName("Save Origin","Origin Files (*.origin)")
+        filename = filename+'.origin'
+        file = open(filename, 'w+')
+        [file.write(str(coordinate)+' ') for coordinate in self.originplot.Origin]
+        file.close()
+    
+    def load_origin(self):
+        '''Load origin from a existing file'''
+        filename = self.get_OpenfileName("Load Origin","Origin Files (*.origin)")
+        file = open(filename, "r")
+        self.originplot.loaded_origin = [float(coordinate) for row in file for coordinate in row.split()]
+        self.originplot.new_origin_loaded = True
+        file.close()
+    
+    def apply_origin(self):
+        '''Apply the loaded origin to all the plots'''
+        if self.originplot.new_origin_loaded:
+            self.set_origin(self.originplot.loaded_origin)
+            self.originplot.new_origin_loaded = False
+    
+    def get_OpenfileName(self,dialog,filter):
+        '''Opens a dialog box to get a file name'''
+        self.pause_animations()
+        filename,_ = QtWidgets.QFileDialog.getOpenFileName(None, dialog, '',filter)
+        self.resume_animations()
+        return filename
+    
+    def get_SavefileName(self,dialog,filter):
+        '''Opens a dialog box to get a save file name'''
+        self.pause_animations()
+        filename,_ = QtWidgets.QFileDialog.getSaveFileName(None, dialog, '',filter)
+        self.resume_animations()
+        return filename
+    
+    def pause_animations(self):
+        '''This pause all the animation in the GUI'''
+        self.liveplot.animation.event_source.stop()
+        self.originplot.animation.event_source.stop()
+        self.waypointplot.animation.event_source.stop()
+        self.trajectoryplot.animation.event_source.stop()
+    
+    def resume_animations(self):
+        '''This resumes all the animation in the GUI'''
+        self.liveplot.animation.event_source.start()
+        self.originplot.animation.event_source.start()
+        self.waypointplot.animation.event_source.start()
+        self.trajectoryplot.animation.event_source.start()
 
-def save_function(MyGUI):
-        content = 0.1
-        # text box input
-        qfd = QtWidgets.QFileDialog()
-        # typed = MyGUI.setorigin_saveorigin_filename.text()
-        typed = 'my'
-        fname, ok2 = QtWidgets.QFileDialog.getSaveFileName(qfd,typed,os.getcwd(),"Text Files (*.txt)")#"All Files (*);;Text Files (*.txt)" "./"
-        print(fname,ok2)
-        f = open(fname, "w")
-        f.writelines(str(content))
-        f.close()
-        
-def directory_fetch(MyGUI):
-        #print("key is pressed")
-        qfd = QtWidgets.QFileDialog()
-        #To open the directory
-        fileName1, filetype = QtWidgets.QFileDialog.getOpenFileName(qfd,"Select File",os.getcwd(),"All Files (*);;Text Files (*.txt)") 
-        print(fileName1, filetype)
-        #print(fileName1,filetype)
-        f = open(fileName1, "r")
-        origin = f.read()
-        # print(origin)
-        f.close()
-        # check = "it work"
-        # return check
-        '''
-        Popup window 
-        asd = QMessageBox()
-        QMessageBox.question(asd, 'Message - pythonspot.com', "You typed: " + typed, QMessageBox.Ok, QMessageBox.Ok)'''
 
 if __name__ == "__main__": 
     myGUI_app = MyGUI_Application()

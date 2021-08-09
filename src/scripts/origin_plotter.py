@@ -48,6 +48,8 @@ class OriginPlotter(FigureCanvas, anim.FuncAnimation):
                                             interval=20, blit=False)
         # Variables
         self.paused = False
+        self.loaded_origin = list()
+        self.new_origin_loaded = False
         return
     
     def _update_canvas_(self, i, x, y) -> None:

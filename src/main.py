@@ -117,10 +117,13 @@ class MyGUI_Application():
     def load_origin(self):
         '''Load origin from a existing file'''
         filename = self.get_OpenfileName("Load Origin","Origin Files (*.origin)")
-        file = open(filename, "r")
-        self.originplot.loaded_origin = [float(coordinate) for row in file for coordinate in row.split()]
-        self.originplot.new_origin_loaded = True
-        file.close()
+        try:
+            file = open(filename, "r")
+            self.originplot.loaded_origin = [float(coordinate) for row in file for coordinate in row.split()]
+            self.originplot.new_origin_loaded = True
+            file.close()
+        except: pass
+
     
     def apply_origin(self):
         '''Apply the loaded origin to all the plots'''

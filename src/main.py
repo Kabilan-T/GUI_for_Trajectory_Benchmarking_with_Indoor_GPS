@@ -133,7 +133,6 @@ class MyGUI_Application():
         self.originplot.new_origin_loaded = True
         file.close()
         
-    
     def apply_origin(self):
         '''Apply the loaded origin to all the plots'''
         if self.originplot.new_origin_loaded:
@@ -178,7 +177,6 @@ class MyGUI_Application():
         self.waypointplot.animation.event_source.start()
         self.trajectoryplot.animation.event_source.start()
         self.comparisonplot.animation.event_source.start()
-
 
 if __name__ == "__main__": 
     myGUI_app = MyGUI_Application()

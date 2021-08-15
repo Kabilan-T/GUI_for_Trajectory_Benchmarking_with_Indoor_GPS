@@ -530,21 +530,31 @@
        <bool>true</bool>
       </property>
       <property name="currentText">
-       <string>Test Run 1</string>
+       <string>Run 1</string>
       </property>
       <item>
        <property name="text">
-        <string>Test Run 1</string>
+        <string>Run 1</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>Test Run 2</string>
+        <string>Run 2</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>Test Run 3</string>
+        <string>Run 3</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Run 4</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Run 5</string>
        </property>
       </item>
      </widget>
@@ -562,17 +572,27 @@
       </property>
       <item>
        <property name="text">
-        <string>Test Robot 1</string>
+        <string>Robot 1</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>Test Robot 2</string>
+        <string>Robot 2</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>Test Robot 3</string>
+        <string>Robot 3</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Robot 4</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Robot 5</string>
        </property>
       </item>
      </widget>
@@ -723,17 +743,27 @@
       </property>
       <item>
        <property name="text">
-        <string>Test Robot 1</string>
+        <string>Robot 1</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>Test Robot 2</string>
+        <string>Robot 2</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>Test Robot 3</string>
+        <string>Robot 3</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Robot 4</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Robot 5</string>
        </property>
       </item>
      </widget>
@@ -763,21 +793,31 @@
        <bool>true</bool>
       </property>
       <property name="currentText">
-       <string>Test Run 1</string>
+       <string>Run 1</string>
       </property>
       <item>
        <property name="text">
-        <string>Test Run 1</string>
+        <string>Run 1</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>Test Run 2</string>
+        <string>Run 2</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>Test Run 3</string>
+        <string>Run 3</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Run 4</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Run 5</string>
        </property>
       </item>
      </widget>
@@ -914,7 +954,7 @@
      <attribute name="title">
       <string>Compare</string>
      </attribute>
-     <widget class="QLabel" name="compare_label_firsttrajectory">
+     <widget class="QLabel" name="comparison_label_first">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -927,7 +967,7 @@
        <string>First Path</string>
       </property>
      </widget>
-     <widget class="QLabel" name="compare_label_secondtrajectory">
+     <widget class="QLabel" name="comparison_label_second">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -953,7 +993,7 @@
        <string>Compare</string>
       </property>
      </widget>
-     <widget class="QGroupBox" name="compare_comparisonresult_groupBox">
+     <widget class="QGroupBox" name="comparison_result_groupBox">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -965,7 +1005,7 @@
       <property name="title">
        <string>Comparison Result</string>
       </property>
-      <widget class="QLabel" name="compare_metrics">
+      <widget class="QLabel" name="comparison_metrics">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -974,8 +1014,17 @@
          <height>341</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <family>Rachana</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
        <property name="text">
-        <string>Metrics</string>
+        <string>Result</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::PlainText</enum>
        </property>
        <property name="alignment">
         <set>Qt::AlignJustify|Qt::AlignTop</set>
@@ -1017,32 +1066,6 @@
       </property>
       <property name="standardButtons">
        <set>QDialogButtonBox::Open</set>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="comaparison_compare_button_2">
-      <property name="geometry">
-       <rect>
-        <x>730</x>
-        <y>600</y>
-        <width>131</width>
-        <height>33</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Compare</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="comaparison_compare_button_3">
-      <property name="geometry">
-       <rect>
-        <x>760</x>
-        <y>600</y>
-        <width>131</width>
-        <height>33</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Compare</string>
       </property>
      </widget>
      <widget class="QPushButton" name="comaparison_clear_button">

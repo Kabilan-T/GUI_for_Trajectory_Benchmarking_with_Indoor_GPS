@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import os
 from typing import *
+from PyQt5.QtCore import reset
 import numpy as np
 from matplotlib.backends.backend_qt5agg import FigureCanvas
 import matplotlib.figure as mpl_fig
@@ -64,8 +65,6 @@ class ComparisonPlotter(FigureCanvas, anim.FuncAnimation):
                 a=self.waypoints1[no]['Std'][0]
                 b=self.waypoints1[no]['Std'][1]
                 self._boundary1_.append(self._ax_.plot( x+a*np.cos(t) , y+b*np.sin(t), color = 'black', lw =0.5 ))
-
-            # self._path1_ = self._ax_.plot(x1, y1, linewidth = 2, color = 'red')
             self.wapoints1_loaded = False
                                              
         if self.wapoints2_loaded:  
@@ -75,14 +74,12 @@ class ComparisonPlotter(FigureCanvas, anim.FuncAnimation):
                 y = self.waypoints2[no]['Mean'][1]
                 x2.append(x)
                 y2.append(y)
-                self._waypoints2_.append(self._ax_.scatter(x, y, marker='v', color = 'orange', s= 40))
-                self._waypoints2txt_.append(self._ax_.annotate(str(int(no)),(x, y),color='orange', ha='left'))
+                self._waypoints2_.append(self._ax_.scatter(x, y, marker='v', color = 'blue', s= 40))
+                self._waypoints2txt_.append(self._ax_.annotate(str(int(no)),(x, y),color='blue', ha='left'))
                 t = np.linspace(0, 2*np.pi, 100)
                 a=self.waypoints2[no]['Std'][0]
                 b=self.waypoints2[no]['Std'][1]
                 self._boundary2_.append(self._ax_.plot( x+a*np.cos(t) , y+b*np.sin(t), color = 'black', lw =0.5 ))
-
-            # self._path2_ = self._ax_.plot(x2, y2, linewidth = 1, color = 'blue')
             self.wapoints1_loaded = False
 
     def update_plot(self):
@@ -104,6 +101,7 @@ class ComparisonPlotter(FigureCanvas, anim.FuncAnimation):
         self._ax_.grid()
         self._origin_ = self._ax_.scatter(0, 0, marker='P', color = 'blue', s= 100)
         self._origintxt_ = self._ax_.annotate('Origin', (0, 0), ha='center')
+        # Clear variables
         self._waypoints1_ = []
         self._waypoints1txt_ = []
         self._waypoints2_ = []
@@ -134,13 +132,23 @@ class ComparisonPlotter(FigureCanvas, anim.FuncAnimation):
             self.result = dict()
             for no in self.waypoints1:
                 self.result[no] = self.subtract_uncertainities(self.waypoints1[no],
-                                                          self.waypoints2[no])
-            print(self.result)
+                                                               self.waypoints2[no])
+            self.display_result()
     
     def subtract_uncertainities(self,point1,point2):
         '''Function to subtract two uncertainity coordinates [x,y,z]'''
         Mean = point1['Mean']-point2['Mean']
         Std = point1['Std']+point2['Std']
-        return {'Mean': Mean,'Std': Std}
+        return {'Mean': Mean,'Std': Std}   
 
-        
+    def display_result(self):
+        '''Function to display result in the GUI'''  
+        display = f"{'No':^3s}{'X-axis (m)':^23s}{'Y-axis (m)':^23s}{'Z-axis (m)':^23s}\n"
+        for no in self.result:
+            serial_no = str(int(no))
+            display = display+f"{serial_no:^3s}"
+            for mean,std in zip(self.result[no]['Mean'],self.result[no]['Std']):
+                val = str(round(mean,3))+' +/-'+str(round(std,3))+'\t'
+                display = display+f"{val:^20s}"
+            display = display+'\n'
+        self.MyGUI.comparison_metrics.setText(display)

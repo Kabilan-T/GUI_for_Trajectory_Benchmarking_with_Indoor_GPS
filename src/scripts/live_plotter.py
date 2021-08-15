@@ -36,7 +36,7 @@ class LivePlotter(FigureCanvas, anim.FuncAnimation):
         # Position
         self._robot_ = self._ax_.scatter(self.x[-1], self.y[-1], marker='X', color = 'red', s= 100)
         # Annotate
-        self._robottxt_ = self._ax_.annotate('Robot', (self.x[-1], self.y[-1]))
+        self._robottxt_ = self._ax_.annotate('Robot', (self.x[-1], self.y[-1]),ha='center')
 
         # Initialize animation
         self.animation = anim.FuncAnimation(self.figure, self._update_canvas_, 
@@ -69,7 +69,7 @@ class LivePlotter(FigureCanvas, anim.FuncAnimation):
         self._robot_.remove()
         self._robot_ = self._ax_.scatter(x[-1], y[-1], marker='X', color = 'red', s= 100)
         self._robottxt_.remove()
-        self._robottxt_ = self._ax_.annotate('Robot', (x[-1], y[-1]))
+        self._robottxt_ = self._ax_.annotate('Robot', (x[-1], y[-1]), ha='center')
 
         '''labels'''
         self.MyGUI.live_hedge_id.setText("Hedge ID : "+str(position[0]))

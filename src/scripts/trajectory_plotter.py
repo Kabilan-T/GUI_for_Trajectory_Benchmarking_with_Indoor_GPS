@@ -44,7 +44,7 @@ class TrajectoryPlotter(FigureCanvas, anim.FuncAnimation):
         self._origin_ = self._ax_.scatter(0, 0, marker='P', color = 'blue', s= 100)
         # Annotate
         self._robottxt_ = self._ax_.annotate('Robot', (self.x[-1], self.y[-1]))
-        self._origintxt_ = self._ax_.annotate('Origin', (0, 0))
+        self._origintxt_ = self._ax_.annotate('Origin', (0, 0), ha='right')
         
 
         # Initialize animation
@@ -94,7 +94,7 @@ class TrajectoryPlotter(FigureCanvas, anim.FuncAnimation):
             if not self.startplotted :
                 # start Position
                 self._start_ = self._ax_.scatter(self.plot_x[0], self.plot_y[0], marker='o', color = 'red', s= 100)
-                self._starttxt_ = self._ax_.annotate('Start', (self.plot_x[0], self.plot_y[0]))
+                self._starttxt_ = self._ax_.annotate('Start', (self.plot_x[0], self.plot_y[0]), ha='left')
                 self.startplotted = True
 
         '''labels'''

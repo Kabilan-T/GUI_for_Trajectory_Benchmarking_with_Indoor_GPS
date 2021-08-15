@@ -17,6 +17,7 @@ from scripts.live_plotter import LivePlotter
 from scripts.origin_plotter import OriginPlotter 
 from scripts.waypoint_plotter import WaypointPlotter
 from scripts.trajectory_plotter import TrajectoryPlotter 
+from scripts.comparison_plotter import ComparisonPlotter
 
 class MyGUI_Application():
     '''
@@ -49,6 +50,7 @@ class MyGUI_Application():
         self.originplot = OriginPlotter(self.hedge,self.MyGUI)
         self.waypointplot = WaypointPlotter(self.hedge,self.MyGUI)
         self.trajectoryplot = TrajectoryPlotter(self.hedge,self.MyGUI)
+        self.comparisonplot = ComparisonPlotter(self.MyGUI)
     
     def Show_window(self):
         ''' Show GUI window and exit on close'''
@@ -61,6 +63,7 @@ class MyGUI_Application():
         self.set_origin_tab()
         self.waypoint_tab()
         self.trajectory_tab()
+        self.comparison_tab()
 
     def live_tab(self):
         '''Live Tab Interfaces'''
@@ -91,6 +94,14 @@ class MyGUI_Application():
         self.MyGUI.trajectory_recordstart_button.clicked.connect(self.trajectoryplot.recordstart)
         self.MyGUI.trajectory_recordstop_button.clicked.connect(self.trajectoryplot.recordstop)
         self.MyGUI.trajectory_recordclear_button.clicked.connect(self.trajectoryplot.clearplot)
+    
+    def comparison_tab(self):
+        '''Waypoint Comparision Tab'''
+        self.MyGUI.comparison_visualization_window.addWidget(self.comparisonplot)
+        self.MyGUI.comparison_first_path_open_button.button(QtWidgets.QDialogButtonBox.Open).clicked.connect(lambda : self.get_comparision_file(1))
+        self.MyGUI.comparison_second_path_open_button.button(QtWidgets.QDialogButtonBox.Open).clicked.connect(lambda : self.get_comparision_file(2))
+        self.MyGUI.comaparison_clear_button.clicked.connect(self.comparisonplot.clear_plot)
+        self.MyGUI.comaparison_compare_button.clicked.connect(self.comparisonplot.compare_wapoints)
 
     def set_origin(self, origin = []):
         '''Makes the current or given coordinates as Origin'''
@@ -128,6 +139,15 @@ class MyGUI_Application():
             self.set_origin(self.originplot.loaded_origin)
             self.originplot.new_origin_loaded = False
     
+    def get_comparision_file(self,FileNo):
+        '''Gets filenames that needs to be compared'''
+        filename = self.get_OpenfileName("Open Waypoint","Recorded waypoint(*.csv)")
+        if FileNo == 1: 
+            self.comparisonplot.waypointfile1 = filename
+        elif FileNo == 2: 
+            self.comparisonplot.waypointfile2 = filename
+        self.comparisonplot.update_plot()
+    
     def get_OpenfileName(self,dialog,filter):
         '''Opens a dialog box to get a file name'''
         self.pause_animations()
@@ -148,6 +168,7 @@ class MyGUI_Application():
         self.originplot.animation.event_source.stop()
         self.waypointplot.animation.event_source.stop()
         self.trajectoryplot.animation.event_source.stop()
+        self.comparisonplot.animation.event_source.stop()
     
     def resume_animations(self):
         '''This resumes all the animation in the GUI'''
@@ -155,6 +176,7 @@ class MyGUI_Application():
         self.originplot.animation.event_source.start()
         self.waypointplot.animation.event_source.start()
         self.trajectoryplot.animation.event_source.start()
+        self.comparisonplot.animation.event_source.start()
 
 
 if __name__ == "__main__": 

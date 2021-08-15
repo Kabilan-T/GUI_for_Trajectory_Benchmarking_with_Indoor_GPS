@@ -5,9 +5,7 @@ from typing import *
 import csv
 from datetime import datetime
 import numpy as np
-from numpy.core.fromnumeric import std
 import pandas as pd
-from matplotlib.backends.qt_compat import QtCore
 from matplotlib.backends.backend_qt5agg import FigureCanvas
 import matplotlib.figure as mpl_fig
 import matplotlib.animation as anim
@@ -43,7 +41,7 @@ class WaypointPlotter(FigureCanvas, anim.FuncAnimation):
         self._origin_ = self._ax_.scatter(0, 0, marker='P', color = 'blue', s= 100)
         # Annotate
         self._robottxt_ = self._ax_.annotate('Robot', (self.x[-1], self.y[-1]))
-        self._origintxt_ = self._ax_.annotate('Origin', (0, 0))
+        self._origintxt_ = self._ax_.annotate('Origin', (0, 0), ha='right')
         # Waypoints
         self._waypoints_  = list()
         self._waypointstxt_ = list()
@@ -94,7 +92,7 @@ class WaypointPlotter(FigureCanvas, anim.FuncAnimation):
                 
                 # plot waypoint Position
                 self._waypoints_.append(self._ax_.scatter(Mean[0], Mean[1], marker='v', color = 'green', s= 50))
-                self._waypointstxt_.append(self._ax_.annotate(str(len(self.waypoint)), (Mean[0], Mean[1])))
+                self._waypointstxt_.append(self._ax_.annotate(str(len(self.waypoint)), (Mean[0], Mean[1]), ha='right'))
 
                 # write data into file
                 data = [len(self.waypoint), Mean[0], Std[0], Mean[1], Std[1], Mean[2], Std[2]]
@@ -144,9 +142,11 @@ class WaypointPlotter(FigureCanvas, anim.FuncAnimation):
         '''Function to Terminate the recording and clear the plot'''
         self.output_file.close()
         try:
-            [waypoint.remove() for waypoint in self._waypoints_]
-            [txt.remove() for txt in self._waypointstxt_]
+            for waypoint in self._waypoints_ : waypoint.remove()
+            for txt in self._waypointstxt_ : txt.remove()
         except: pass
+        self._waypoints_ = []
+        self._waypointstxt_ = []
         self.waypoint.clear()
         self.waypointFileCreated = False
         print('stop record')

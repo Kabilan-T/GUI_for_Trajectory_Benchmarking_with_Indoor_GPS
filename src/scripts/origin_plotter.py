@@ -40,7 +40,7 @@ class OriginPlotter(FigureCanvas, anim.FuncAnimation):
         self._origin_ = self._ax_.scatter(self.Origin[0], self.Origin[1], marker='P', color = 'green', s= 100)
         # Annotate
         self._robottxt_ = self._ax_.annotate('Robot', (self.x[-1], self.y[-1]))
-        self._origintxt_ = self._ax_.annotate('Origin', (self.Origin[0], self.Origin[1]))
+        self._origintxt_ = self._ax_.annotate('Origin', (self.Origin[0], self.Origin[1]), ha='right')
 
         # Initialize animation
         self.animation = anim.FuncAnimation(self.figure, self._update_canvas_, 
@@ -81,7 +81,7 @@ class OriginPlotter(FigureCanvas, anim.FuncAnimation):
         self._robottxt_.remove()
         self._robottxt_ = self._ax_.annotate('Robot', (self.x[-1], self.y[-1]))
         self._origintxt_.remove()
-        self._origintxt_ = self._ax_.annotate('Origin', (self.Origin[0], self.Origin[1]))
+        self._origintxt_ = self._ax_.annotate('Origin', (self.Origin[0], self.Origin[1]), ha='right')
 
         '''labels'''
         # Origin

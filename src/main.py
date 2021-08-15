@@ -132,6 +132,7 @@ class MyGUI_Application():
         self.originplot.loaded_origin = [float(coordinate) for row in file for coordinate in row.split()]
         self.originplot.new_origin_loaded = True
         file.close()
+        
     
     def apply_origin(self):
         '''Apply the loaded origin to all the plots'''

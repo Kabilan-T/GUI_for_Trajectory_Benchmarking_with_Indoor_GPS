@@ -18,7 +18,7 @@ The goal of the project is to develop a GUI application which can record and com
 * For 3-D application minimum **3-Stationary Beacons** are required and a maximum of 4 is allowed per sub-map. we have **1-Mobile Beacon** which will be placed over the robot.
 * The Stationary Beacons will take some time to measure the distance between them so that it can form a map. check Table of distances.
 
-* If you see in the table some cells marked yellow/red, it denotes the measurements inconsistent. Try to re-position them because usually there is an obstruction of some sort in the between the beacons. The cells must be colored in white before freezing the sub-map.
+* If you see in the table some cells marked yellow/red, it denotes the measurements inconsistent. Try to re-position them because usually there is an obstruction of some sort in the between the beacons. The cells must be colored in white before freezing the sub-map. \
 ![wrong](images/m_redcell.png) ![Right](images/m_whitecell.png)
 * The Stationary beacons should not be moved from their position after this setup. In case if it is moved, then we need to do the setup again.
 
@@ -60,7 +60,7 @@ The GUI application can be started either by running the python file [main.py](s
   * "Reset" and "Cancel" button reset the origin back to world origin coordinates (0,0,0).
 3. Waypoint Record Tab
   ![Waypoint Record Tab](images/waypoint.png)
-  * The waypoints will be recorded in a csv file. the filename format is *RobotName_RunName_TimeStamp"
+  * The waypoints will be recorded in a csv file. the filename format is "RobotName_RunName_TimeStamp"
   * Robot name and Run name can be selected in corresponding dropdown menus.
   * The "Record" button should be clicked everytime to record a new point.
   * "Stop" button is clicked when current path is ended. It'll close the file and clears the map for next iteration.
